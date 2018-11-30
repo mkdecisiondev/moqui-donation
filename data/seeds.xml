@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-facade-xml type="seed">
+    <moqui.security.ArtifactGroup artifactGroupId="EMPLOYMENT_API"/>
+    <moqui.security.ArtifactAuthz userGroupId="ADMIN" authzActionEnumId="AUTHZA_ALL" artifactGroupId="EMPLOYMENT_API" authzTypeEnumId="AUTHZT_ALLOW"/>
+
+    <artifactGroups artifactGroupId="EMPLOYMENT_API">
+        <artifacts artifactName="component://GND/screen/GND/DonationForm*" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="Y"/>
+        <artifacts artifactName="component://GND/screen/GND/DonationForm.xml" artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y" nameIsPattern="N"/>
+
+        <artifacts artifactName="component://GND/screen/GND/FirstTimeDonor*" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="Y"/>
+        <artifacts artifactName="component://GND/screen/GND/FirstTimeDonor.xml" artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y" nameIsPattern="N"/>
+
+        <artifacts artifactName="component://GND/screen/GND/ThankYouPage*" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="Y"/>
+        <artifacts artifactName="component://GND/screen/GND/ThankYouPage.xml" artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y" nameIsPattern="N"/>
+
+
+        <artifacts artifactName="DonationPage.DonationPageServices.create#Donation" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.create#Donation" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.create#PersonCustomer" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.create#PersonCustomer" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.post#DonationData" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.post#DonationData" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.handle#Donation" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.handle#Donation" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.handle#FirstTimeDonation" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.handle#FirstTimeDonation" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="N"/>
+
+    </artifactGroups>
+    <mantle.party.Party partyId="GND" partyTypeEnumId="PtyOrganization"/>
+    <mantle.party.Organization partyId="GND" organizationName="Guru Nanak Dwara"/>
+    <mantle.party.PartyRole partyId="GND" roleTypeId="OrgInternal"/>
+    <mantle.party.PartyRole partyId="GND" roleTypeId="Vendor"/>
+</entity-facade-xml>

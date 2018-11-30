@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-2.1.xsd">
+    <service verb="create" noun="Donation" type="java" location="com.mk.moqui.StripeService" method="getDonation" authenticate="anonymous-all">
+        <in-parameters>
+            <parameter name="DonationAmount" required="true"/>
+            <parameter name="stripeToken" required="true"/>
+        </in-parameters>
+    </service>
+
+    <service verb="send" noun="ConfirmationEmail" type="java" location="com.mk.moqui.sendConfirmationEmail" method="sendEmail" authenticate="anonymous-all">
+        <in-parameters>
+            <parameter name="DonationAmount" required="true"/>
+            <parameter name="firstName" required="true"/>
+            <parameter name="lastName" required="true"/>
+            <parameter name="emailAddress" required="true"/>
+        </in-parameters>
+    </service>
+
+    <service verb="create" noun="PersonCustomer">
+        <in-parameters>
+            <parameter name="firstName" required="true"/>
+            <parameter name="lastName" required="true"/>
+            <parameter name="emailAddress" required="true"/>
+            <parameter name="contactNumber" required="true"/>
+            <parameter name="address1" required="true"/>
+            <parameter name="city" required="true"/>
+            <parameter name="stateProvinceGeoId" required="true"/>
+            <parameter name="postalCode" required="true"/>
+        </in-parameters>
+
+        <out-parameters>
+            <parameter name="partyId" required="true"/>
+        </out-parameters>
+
+        <actions>
+            <service-call name="mantle.party.PartyServices.create#PersonCustomer" in-map="context" out-map="context"/>
+        </actions>
+    </service>
+
+    <service verb="post" noun="DonationData">
+        <in-parameters>
+            <parameter name="DonationAmount" required="true"/>
+            <parameter name="partyId" required="true"/>
+        </in-parameters>
+
+        <out-parameters>
+
+        </out-parameters>
+
+        <actions>
+            <set field="customerPartyId" from="partyId"/>
+            <set field="vendorPartyId" value="GND"/>
+            <service-call name="mantle.order.OrderServices.create#Order" in-map="context" out-map="context"/>
+
+            <set field="itemTypeEnumId" value="ItemDonation"/>
+            <set field="quantity" value="1"/>
+            <set field="unitListPrice" from="DonationAmount"/>
+            <service-call name="mantle.order.OrderServices.create#OrderItem" in-map="context" out-map="context"/>
+
+            <set field="partTotal" from="DonationAmount"/>
+            <service-call name="mantle.order.OrderServices.update#OrderPart" in-map="context" out-map="context"/>
+
+            <set field="paymentTypeEnumId" value="PtInvoicePayment"/>
+            <set field="paymentInstrumentEnumId" value="PiOther"/>
+            <service-call name="mantle.order.OrderServices.add#OrderPartPayment" in-map="context" out-map="context"/>
+
+            <set field="fromPartyId" value="GND"/>
+            <set field="toPartyId" from="customerPartyId"/>
+            <set field="unpaidTotal" from="DonationAmount"/>
+            <set field="appliedPaymentsTotal" value="0.00"/>
+            <set field="invoiceTotal" from="DonationAmount"/>
+            <set field="description" value="Donation"/>
+            <service-call name="mantle.account.InvoiceServices.create#Invoice" in-map="context" out-map="context"/>
+
+            <set field="amount" from="DonationAmount"/>
+            <service-call name="mantle.account.InvoiceServices.create#InvoiceItem" in-map="context" out-map="context"/>
+
+            <service-call name="mantle.account.PaymentServices.send#PromisedPayment" in-map="context" out-map="context"/>
+
+            <service-call name="mantle.account.PaymentServices.apply#InvoicePayment" in-map="context" out-map="context"/>
+
+            <service-call name="mantle.order.OrderServices.place#Order" in-map="context" out-map="context"/>
+
+            <service-call name="mantle.order.OrderServices.approve#Order" in-map="context" out-map="context"/>
+
+            <service-call name="mantle.order.OrderServices.complete#OrderPart" in-map="context" out-map="context"/>
+        </actions>
+    </service>
+
+    <service verb="handle" noun="Donation">
+        <in-parameters>
+            <parameter name="DonationAmount" required="true"/>
+            <parameter name="partyId" required="true"/>
+            <parameter name="stripeToken" required="true"/>
+        </in-parameters>
+
+        <out-parameters>
+
+        </out-parameters>
+
+        <actions>
+            <service-call name="DonationPage.DonationPageServices.create#Donation" in-map="context" out-map="context"/>
+
+            <service-call name="DonationPage.DonationPageServices.post#DonationData" in-map="context" out-map="context"/>
+        </actions>
+    </service>
+
+    <service verb="handle" noun="FirstTimeDonation">
+        <in-parameters>
+            <parameter name="firstName" required="true"/>
+            <parameter name="lastName" required="true"/>
+            <parameter name="emailAddress" required="true"/>
+            <parameter name="contactNumber" required="true"/>
+            <parameter name="address1" required="true"/>
+            <parameter name="city" required="true"/>
+            <parameter name="stateProvinceGeoId" required="true"/>
+            <parameter name="postalCode" required="true"/>
+            <parameter name="DonationAmount" required="true"/>
+            <parameter name="stripeToken" required="true"/>
+        </in-parameters>
+
+        <out-parameters>
+
+        </out-parameters>
+
+        <actions>
+            <service-call name="DonationPage.DonationPageServices.create#PersonCustomer" in-map="context" out-map="context"/>
+
+            <service-call name="DonationPage.DonationPageServices.create#Donation" in-map="context" out-map="context"/>
+
+            <service-call name="DonationPage.DonationPageServices.send#ConfirmationEmail" in-map="context" out-map="context"/>
+
+            <service-call name="DonationPage.DonationPageServices.post#DonationData" in-map="context" out-map="context"/>
+        </actions>
+    </service>
+</services>

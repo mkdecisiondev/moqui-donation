@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="stripeElement.css">
+  <script src="https://js.stripe.com/v3/"></script>
+
+</head>
+
+<body>
+
+  <form action="/apps/GND/FirstTimeDonor/HandleFirstTimeDonation" method="post" id="payment-form">
+    <div class="form-row">
+      <div id="customer-info">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName">
+        <br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName">
+        <br>
+        <label for="emailAddress">Email Address:</label>
+        <input type="text" id="emailAddress" name="emailAddress">
+        <br>
+        <label for="contactNumber">Phone Number:</label>
+        <input type="text" id="contactNumber" name="contactNumber">
+        <br>
+        <label for="address1">Street Address:</label>
+        <input type="text" id="address1" name="address1">
+        <br>
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city">
+        <br>
+        <label for="stateProvinceGeoId">State:</label>
+        <input type="text" id="stateProvinceGeoId" name="stateProvinceGeoId">
+        <br>
+        <label for="postalCode">Zip Code:</label>
+        <input type="text" id="postalCode" name="postalCode">
+      </div>
+
+      <label for="DonationAmount">How much would you like to donate today?:</label>
+      <input type="text" id="DonationAmount" name="DonationAmount">
+      <br>
+
+
+      <label for="card-element">
+        Credit or debit card
+      </label>
+      <div id="card-element">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
+
+      <!-- Used to display form errors. -->
+      <div id="card-errors" role="alert"></div>
+    </div>
+
+    <button class="button">Submit Payment</button>
+  </form>
+  <script src="stripeElement.js"></script>
+</body>
+
+</html>

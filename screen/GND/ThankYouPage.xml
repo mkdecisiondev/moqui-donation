@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screen require-authentication="false" standalone="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
+    
+    <!-- <transition name="post" require-session-token="false"> -->
+    <!-- require-session-token needs to be set to false to prevent 401 errors. -->
+        <!-- <service-call name="DonationPage.DonationPageServices.create#Donation"/> -->
+        <!-- <service-call name ="DonationPage.DonationPageServices.post#DonationData"/> -->
+        <!-- <default-response url="."/> -->
+    <!-- </transition> -->
+
+    <widgets>
+        <label type="h1" text="Thank you for your generous donation!"/>
+        <link text="Return to donations page" url="../ReturningDonor"/>
+    </widgets>
+</screen>
