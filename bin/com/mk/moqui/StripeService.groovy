@@ -23,7 +23,7 @@ class StripeService {
             params.put("amount", processedAmount);
             params.put("currency", "usd");
             params.put("source", ec.context.stripeToken);
-            params.put("receipt_email", "jenny.rosen@example.com");
+            params.put("receipt_email", "justin1020@gmail.com");
             Charge charge = Charge.create(params);
       }
 }

@@ -15,11 +15,16 @@
     <link text="First time donor? Click here!" url="../FirstTimeDonor"/>
     <label type="h1" text="How much would you like to donate today?"/>
     <form-single name="Donation" transition="Stripe">
-      <field name="partyId">
+      <field name="emailAddress">
         <default-field>
           <text-line/>
         </default-field>
       </field>
+      <!-- <field name="partyId">
+        <default-field>
+          <text-line/>
+        </default-field>
+      </field> -->
       <field name="DonationAmount">
         <default-field>
           <text-line/>
