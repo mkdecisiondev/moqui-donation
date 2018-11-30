@@ -105,12 +105,20 @@
                 EntityValue userContactMech = ec.entity.find("mantle.party.contact.ContactMech").condition( [ "infoString" : emailAddress ] ).one()
 
                 EntityValue userPartyContactMech = ec.entity.find("mantle.party.contact.PartyContactMech").condition( [ "contactMechId" : userContactMech.contactMechId ] ).one()
+
+                EntityValue userParty = ec.entity.find("mantle.party.Party").condition( [ "partyId" : userPartyContactMech.partyId ] ).one()
+
+                EntityValue userPerson = ec.entity.find("mantle.party.Person").condition( [ "partyId" : userParty.partyId ] ).one()
             </script>
             
             <set field="partyId" from="userPartyContactMech.partyId"/>
+            <set field="firstName" from="userPerson.firstName"/>
+            <set field="lastName" from="userPerson.lastName"/>
 
             <!-- <service-call name="DonationPage.DonationPageServices.create#Donation" in-map="context" out-map="context"/> -->
             <!-- Can't do this yet since Customer object in Stripe not set up yet -->
+
+            <service-call name="DonationPage.DonationPageServices.send#ConfirmationEmail" in-map="context" out-map="context"/>
 
             <service-call name="DonationPage.DonationPageServices.post#DonationData" in-map="context" out-map="context"/>
         </actions>
