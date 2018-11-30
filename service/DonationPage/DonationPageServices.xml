@@ -91,7 +91,9 @@
         <in-parameters>
             <parameter name="DonationAmount" required="true"/>
             <parameter name="emailAddress" required="true"/>
-            <parameter name="stripeToken" required="true"/>
+            <!-- <parameter name="stripeToken" required="true"/> -->
+            <!-- Can't do this yet since Customer object in Stripe not set up yet -->
+            <parameter name="partyId" required="true"/>
         </in-parameters>
 
         <out-parameters>
@@ -99,10 +101,19 @@
         </out-parameters>
 
         <actions>
-            <!-- <script>
+            <script>
+                EntityValue userContactMech = ec.entity.find("mantle.party.contact.PartyContactMech").condition( [ "infoString" : emailAddress ] ).one()
+
+                EntityValue userPartyContactMech = ec.entity.find("mantle.party.contact.ContactMech").condition( [ "contactMechId" : userContactMech.contactMechId ] ).one()
+
+                println userPartyContactMech.partyId
+                println "PARTYID~~~~~~~~~~~~~~~~~"
+
+                <set field="partyId" value="partyContactMech.partyId"/>
                 
-            </script> -->
-            <service-call name="DonationPage.DonationPageServices.create#Donation" in-map="context" out-map="context"/>
+            </script>
+            <!-- <service-call name="DonationPage.DonationPageServices.create#Donation" in-map="context" out-map="context"/> -->
+            <!-- Can't do this yet since Customer object in Stripe not set up yet -->
 
             <service-call name="DonationPage.DonationPageServices.post#DonationData" in-map="context" out-map="context"/>
         </actions>

@@ -10,6 +10,9 @@
         <artifacts artifactName="component://GND/screen/GND/FirstTimeDonor*" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="Y"/>
         <artifacts artifactName="component://GND/screen/GND/FirstTimeDonor.xml" artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y" nameIsPattern="N"/>
 
+        <artifacts artifactName="component://GND/screen/GND/ReturningDonor*" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="Y"/>
+        <artifacts artifactName="component://GND/screen/GND/ReturningDonor.xml" artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y" nameIsPattern="N"/>
+
         <artifacts artifactName="component://GND/screen/GND/ThankYouPage*" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="Y"/>
         <artifacts artifactName="component://GND/screen/GND/ThankYouPage.xml" artifactTypeEnumId="AT_XML_SCREEN" inheritAuthz="Y" nameIsPattern="N"/>
 
