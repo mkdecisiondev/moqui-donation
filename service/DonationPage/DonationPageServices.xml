@@ -90,7 +90,7 @@
     <service verb="handle" noun="Donation">
         <in-parameters>
             <parameter name="DonationAmount" required="true"/>
-            <parameter name="partyId" required="true"/>
+            <parameter name="emailAddress" required="true"/>
             <parameter name="stripeToken" required="true"/>
         </in-parameters>
 
@@ -99,6 +99,9 @@
         </out-parameters>
 
         <actions>
+            <!-- <script>
+                
+            </script> -->
             <service-call name="DonationPage.DonationPageServices.create#Donation" in-map="context" out-map="context"/>
 
             <service-call name="DonationPage.DonationPageServices.post#DonationData" in-map="context" out-map="context"/>
