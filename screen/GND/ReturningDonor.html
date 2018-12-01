@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="stripeElement.css">
+  <script src="https://js.stripe.com/v3/"></script>
+
+</head>
+
+<body>
+
+  <form action="/apps/GND/ReturningDonor/HandleFirstTimeDonation" method="post" id="payment-form">
+    <div class="form-row">
+      <div id="customer-info">
+        <label for="emailAddress">Email Address:</label>
+        <input type="text" id="emailAddress" name="emailAddress">
+        <br>
+        <br>
+      <label for="DonationAmount">Donation Amount:</label>
+      <input type="text" id="DonationAmount" name="DonationAmount">
+      <br>
+
+      <br>  
+      <label for="card-element">
+        Credit or Debit card
+      </label>
+      <br><br>
+      <div id="card-element">
+        <!-- A Stripe Element will be inserted here. -->
+      </div>
+
+      <!-- Used to display form errors. -->
+      <div id="card-errors" role="alert"></div>
+    </div>
+
+    <button class="button" style="background-color: #f6914a;
+    border-radius: 4px;
+    color: white;
+    display: block;
+    font-family: 'Roboto Bold';
+    font-size: 24px;
+    line-height: 34px;
+    margin: 1em auto 0 auto;
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 280px;
+">Submit Payment</button>
+  </form>
+  <script src="stripeElement.js"></script>
+</body>
+
+</html>
