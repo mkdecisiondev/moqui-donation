@@ -9,7 +9,6 @@
 
     <widgets>
         <link text="Returning donor? Click here!" url="../ReturningDonor"/>
-        <label type="h1" text="Enter Donor Info:"/>
         <render-mode>
             <text type="html,vuet" location="component://GND/screen/GND/stripeElement.html"/>
         </render-mode>
