@@ -12,6 +12,17 @@
   </transition>
 
   <widgets>
+    <render-mode>
+            <text type="html,vuet" location="component://GND/screen/GND/ReturningDonor.html"/>
+        </render-mode>
+  </widgets>
+</screen>
+    
+    
+    
+<!--     
+    
+    
     <link text="First time donor? Click here!" url="../FirstTimeDonor"/>
     <label type="h1" text="How much would you like to donate today?"/>
     <form-single name="Donation" transition="Stripe">
@@ -30,6 +41,4 @@
           <submit/>
         </default-field>
       </field>
-    </form-single>
-  </widgets>
-</screen>
+    </form-single> -->
