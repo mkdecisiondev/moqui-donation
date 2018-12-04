@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-2.1.xsd">
-    <service verb="create" noun="Donation" type="java" location="com.mk.moqui.StripeService" method="getDonation" authenticate="anonymous-all">
+    <service verb="create" noun="StripeCustomer" type="java" location="com.mk.moqui.GNDStripeCustomer" method="createStripeCustomer" authenticate="anonymous-all">
+        <in-parameters>
+            <parameter name="emailAddress" required="true"/>
+            <parameter name="stripeToken" required="true"/>
+        </in-parameters>
+
+        <out-parameters>
+            <parameter name="stripeCustomerId" required="true"/>
+        </out-parameters>
+
+        <actions>
+            <script>
+                println "##############Stripe Token for Card"
+                println stripeToken
+            </script>
+        </actions>
+    </service>
+
+    <service verb="charge" noun="StripeCustomer" type="java" location="com.mk.moqui.GNDStripeCustomer" method="chargeStripeCustomer" authenticate="anonymous-all">
         <in-parameters>
             <parameter name="DonationAmount" required="true"/>
-            <parameter name="stripeToken" required="true"/>
+            <parameter name="description" required="true"/>
         </in-parameters>
     </service>
 
@@ -26,14 +44,36 @@
             <parameter name="city" required="true"/>
             <parameter name="stateProvinceGeoId" required="true"/>
             <parameter name="postalCode" required="true"/>
+            <parameter name="stripeCustomerId" required="true"/>
         </in-parameters>
 
         <out-parameters>
             <parameter name="partyId" required="true"/>
+            <parameter name="description" required="true"/>
         </out-parameters>
 
         <actions>
+            <script>
+                println "##############Create Moqui Customer Start"
+                println stripeCustomerId
+                println "Stripe Customer Id above"
+            </script>
             <service-call name="mantle.party.PartyServices.create#PersonCustomer" in-map="context" out-map="context"/>
+            <script>
+                println "##############Create Moqui Customer End"
+                println partyId
+            </script>
+            <set field="ownerPartyId" from="partyId"/>
+            <set field="paymentMethodTypeEnumId" value="PmtOther"/>
+            <set field="description" from="stripeCustomerId"/>
+
+            <service-call name="create#mantle.account.method.PaymentMethod" in-map="context" out-map="context"/>
+            <script>
+                println "Description"
+                println description
+                println "Payment Method Id"
+                println paymentMethodId
+            </script>
         </actions>
     </service>
 
@@ -109,14 +149,16 @@
                 EntityValue userParty = ec.entity.find("mantle.party.Party").condition( [ "partyId" : userPartyContactMech.partyId ] ).one()
 
                 EntityValue userPerson = ec.entity.find("mantle.party.Person").condition( [ "partyId" : userParty.partyId ] ).one()
+
+                EntityValue userPersonStripeInfo = ec.entity.find("mantle.account.method.PaymentMethod").condition( [ "ownerPartyId" : userParty.partyId ] ).one()
             </script>
             
             <set field="partyId" from="userPartyContactMech.partyId"/>
             <set field="firstName" from="userPerson.firstName"/>
             <set field="lastName" from="userPerson.lastName"/>
+            <set field="description" from="userPersonStripeInfo.description"/>
 
-            <!-- <service-call name="DonationPage.DonationPageServices.create#Donation" in-map="context" out-map="context"/> -->
-            <!-- Can't do this yet since Customer object in Stripe not set up yet -->
+            <service-call name="DonationPage.DonationPageServices.charge#StripeCustomer" in-map="context" out-map="context"/>
 
             <service-call name="DonationPage.DonationPageServices.send#ConfirmationEmail" in-map="context" out-map="context"/>
 
@@ -143,9 +185,11 @@
         </out-parameters>
 
         <actions>
+            <service-call name="DonationPage.DonationPageServices.create#StripeCustomer" in-map="context" out-map="context"/>
+
             <service-call name="DonationPage.DonationPageServices.create#PersonCustomer" in-map="context" out-map="context"/>
 
-            <service-call name="DonationPage.DonationPageServices.create#Donation" in-map="context" out-map="context"/>
+            <service-call name="DonationPage.DonationPageServices.charge#StripeCustomer" in-map="context" out-map="context"/>
 
             <service-call name="DonationPage.DonationPageServices.send#ConfirmationEmail" in-map="context" out-map="context"/>
 
