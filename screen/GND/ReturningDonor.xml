@@ -2,11 +2,7 @@
 <screen require-authentication="false" standalone="true" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
 
-  <transition name="Stripe" require-session-token="false">
-    <!-- require-session-token needs to be set to false to prevent 401 errors. -->
-    <!-- <actions>
-      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_Jigk57YQcA1vMohz4lE6vDcd" data-name="Guru Nanak Dwara" data-description="Donation" data-image="GND/GND.png" data-locale="auto" data-zip-code="true"></script>
-    </actions> -->
+  <transition name="HandleDonation" require-session-token="false">
     <service-call name="DonationPage.DonationPageServices.handle#Donation"/>
     <default-response url="../ThankYouPage"/>
   </transition>
