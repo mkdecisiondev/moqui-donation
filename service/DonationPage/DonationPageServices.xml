@@ -77,6 +77,65 @@
         </actions>
     </service>
 
+
+    <service verb="create" noun="OrderForMonthlyDonationPlan">
+        <in-parameters>
+            <parameter name="DonationAmount" required="true"/>
+            <parameter name="emailAddress" required="true"/>
+        </in-parameters>
+
+        <out-parameters>
+
+        </out-parameters>
+
+        <actions>
+
+            <script>
+                EntityValue userContactMech = ec.entity.find("mantle.party.contact.ContactMech").condition( [ "infoString" : emailAddress ] ).one()
+
+                EntityValue userPartyContactMech = ec.entity.find("mantle.party.contact.PartyContactMech").condition( [ "contactMechId" : userContactMech.contactMechId ] ).one()
+
+                EntityValue userParty = ec.entity.find("mantle.party.Party").condition( [ "partyId" : userPartyContactMech.partyId ] ).one()
+            </script>
+
+            <set field="partyId" from="userParty.partyId"/>
+            <set field="customerPartyId" from="partyId"/>
+            <set field="vendorPartyId" value="GND"/>
+            <service-call name="mantle.order.OrderServices.create#Order" in-map="context" out-map="context"/>
+
+            <set field="itemTypeEnumId" value="ItemDonationMonthly"/>
+            <set field="quantity" value="1"/>
+            <set field="unitListPrice" from="DonationAmount"/>
+            <service-call name="mantle.order.OrderServices.create#OrderItem" in-map="context" out-map="context"/>
+
+            <set field="partTotal" from="DonationAmount"/>
+            <service-call name="mantle.order.OrderServices.update#OrderPart" in-map="context" out-map="context"/>
+
+            <set field="paymentTypeEnumId" value="PtInvoicePayment"/>
+            <set field="paymentInstrumentEnumId" value="PiOther"/>
+            <service-call name="mantle.order.OrderServices.add#OrderPartPayment" in-map="context" out-map="context"/>
+
+            <set field="fromPartyId" value="GND"/>
+            <set field="toPartyId" from="customerPartyId"/>
+            <set field="unpaidTotal" from="DonationAmount"/>
+            <set field="appliedPaymentsTotal" value="0.00"/>
+            <set field="invoiceTotal" from="DonationAmount"/>
+            <set field="description" value="Monthly Donation"/>
+            <service-call name="mantle.account.InvoiceServices.create#Invoice" in-map="context" out-map="context"/>
+
+            <set field="amount" from="DonationAmount"/>
+            <service-call name="mantle.account.InvoiceServices.create#InvoiceItem" in-map="context" out-map="context"/>
+
+            <service-call name="mantle.account.PaymentServices.send#PromisedPayment" in-map="context" out-map="context"/>
+
+            <service-call name="mantle.account.PaymentServices.apply#InvoicePayment" in-map="context" out-map="context"/>
+
+            <service-call name="mantle.order.OrderServices.place#Order" in-map="context" out-map="context"/>
+
+            <service-call name="mantle.order.OrderServices.approve#Order" in-map="context" out-map="context"/>
+        </actions>
+    </service>
+
     <service verb="post" noun="DonationData">
         <in-parameters>
             <parameter name="DonationAmount" required="true"/>
@@ -131,9 +190,6 @@
         <in-parameters>
             <parameter name="DonationAmount" required="true"/>
             <parameter name="emailAddress" required="true"/>
-            <!-- <parameter name="stripeToken" required="true"/> -->
-            <!-- Can't do this yet since Customer object in Stripe not set up yet -->
-            <!-- <parameter name="partyId" required="true"/> -->
         </in-parameters>
 
         <out-parameters>
@@ -152,7 +208,7 @@
 
                 EntityValue userPersonStripeInfo = ec.entity.find("mantle.account.method.PaymentMethod").condition( [ "ownerPartyId" : userParty.partyId ] ).one()
             </script>
-            
+
             <set field="partyId" from="userPartyContactMech.partyId"/>
             <set field="firstName" from="userPerson.firstName"/>
             <set field="lastName" from="userPerson.lastName"/>
@@ -166,49 +222,19 @@
         </actions>
     </service>
 
-    <service verb="handle" noun="FirstTimeDonation">
+    <service verb="check" noun="DonorEmailAndFrequency">
         <in-parameters>
-            <parameter name="firstName" required="true"/>
-            <parameter name="lastName" required="true"/>
             <parameter name="emailAddress" required="true"/>
-            <parameter name="contactNumber" required="true"/>
-            <parameter name="address1" required="true"/>
-            <parameter name="city" required="true"/>
-            <parameter name="stateProvinceGeoId" required="true"/>
-            <parameter name="postalCode" required="true"/>
-            <parameter name="DonationAmount" required="true"/>
-            <parameter name="stripeToken" required="true"/>
-        </in-parameters>
-
-        <out-parameters>
-
-        </out-parameters>
-
-        <actions>
-            <service-call name="DonationPage.DonationPageServices.create#StripeCustomer" in-map="context" out-map="context"/>
-
-            <service-call name="DonationPage.DonationPageServices.create#PersonCustomer" in-map="context" out-map="context"/>
-
-            <service-call name="DonationPage.DonationPageServices.charge#StripeCustomer" in-map="context" out-map="context"/>
-
-            <service-call name="DonationPage.DonationPageServices.send#ConfirmationEmail" in-map="context" out-map="context"/>
-
-            <service-call name="DonationPage.DonationPageServices.post#DonationData" in-map="context" out-map="context"/>
-        </actions>
-    </service>
-
-    <service verb="check" noun="DonorEmail">
-        <in-parameters>
-            <parameter name="firstName" required="true"/>
-            <parameter name="lastName" required="true"/>
-            <parameter name="emailAddress" required="true"/>
-            <parameter name="contactNumber" required="true"/>
-            <parameter name="address1" required="true"/>
-            <parameter name="city" required="true"/>
-            <parameter name="stateProvinceGeoId" required="true"/>
-            <parameter name="postalCode" required="true"/>
-            <parameter name="DonationAmount" required="true"/>
-            <parameter name="stripeToken" required="true"/>
+            <parameter name="donationFrequency" required="true"/>
+            <parameter name="stripeToken"/>
+            <parameter name="firstName"/>
+            <parameter name="lastName"/>
+            <parameter name="contactNumber"/>
+            <parameter name="address1"/>
+            <parameter name="city"/>
+            <parameter name="stateProvinceGeoId"/>
+            <parameter name="postalCode"/>
+            <parameter name="DonationAmount"/>
         </in-parameters>
 
         <out-parameters>
@@ -219,13 +245,96 @@
                 EntityValue queryForEmail = ec.entity.find("mantle.party.contact.ContactMech").condition( [ "infoString" : emailAddress ] ).one()
             </script>
 
-            <if condition="queryForEmail != null">
+            <if condition="queryForEmail != null &amp;&amp; donationFrequency == 'one-time-donation'">
                 <service-call name="DonationPage.DonationPageServices.handle#Donation" in-map="context" out-map="context"/>
             </if>
 
-            <if condition="queryForEmail == null">
-                <service-call name="DonationPage.DonationPageServices.handle#FirstTimeDonation" in-map="context" out-map="context"/>
+            <if condition="queryForEmail == null &amp;&amp; donationFrequency == 'one-time-donation'">
+                <service-call name="DonationPage.DonationPageServices.create#StripeCustomer" in-map="context" out-map="context"/>
+
+                <service-call name="DonationPage.DonationPageServices.create#PersonCustomer" in-map="context" out-map="context"/>
+
+                <service-call name="DonationPage.DonationPageServices.handle#Donation" in-map="context" out-map="context"/>
             </if>
+
+            <if condition="queryForEmail != null &amp;&amp; donationFrequency == 'monthly-donation'">
+                <service-call name="DonationPage.DonationPageServices.create#OrderForMonthlyDonationPlan" in-map="context" out-map="context"/>
+            </if>
+
+            <if condition="queryForEmail == null &amp;&amp; donationFrequency == 'monthly-donation'">
+                <service-call name="DonationPage.DonationPageServices.create#StripeCustomer" in-map="context" out-map="context"/>
+
+                <service-call name="DonationPage.DonationPageServices.create#PersonCustomer" in-map="context" out-map="context"/>
+
+                <service-call name="DonationPage.DonationPageServices.create#OrderForMonthlyDonationPlan" in-map="context" out-map="context"/>
+            </if>
+        </actions>
+    </service>
+
+    <service verb="process" noun="MonthlyDonation">
+        <in-parameters>
+        </in-parameters>
+
+        <out-parameters>
+        </out-parameters>
+
+        <actions>
+            <script>
+                EntityValue monthlyOrderItem = ec.entity.find("mantle.order.OrderItem").condition( [ "itemTypeEnumId" : "ItemDonationMonthly" ] ).one()
+                println "#################################monthlyOrderItem"
+                println monthlyOrderItem
+                EntityValue monthlyOrderPart = ec.entity.find("mantle.order.OrderPart").condition( [ "orderId" : monthlyOrderItem.orderId ] ).one()
+                println "#################################monthlyOrderPart"
+                println monthlyOrderPart
+                EntityValue userParty = ec.entity.find("mantle.party.Party").condition( [ "partyId" : monthlyOrderPart.customerPartyId ] ).one()
+                println "#################################userParty"
+                println userParty
+                EntityValue userPartyContactMech = ec.entity.find("mantle.party.contact.PartyContactMech").condition( [ "partyId" : userParty.partyId, "contactMechPurposeId" : "EmailPrimary" ] ).one()
+                println "#################################userPartyContactMech"
+                println userPartyContactMech
+                EntityValue userContactMech = ec.entity.find("mantle.party.contact.ContactMech").condition( [ "contactMechId" : userPartyContactMech.contactMechId ] ).one()
+                println "#################################userContactMech"
+                println userContactMech
+            </script>
+
+            <set field="OrderIds" from="new ArrayList()"/>
+            <set field="DonationAmounts" from="new ArrayList()"/>
+            <set field="EmailAddresses" from="new ArrayList()"/>
+
+            <entity-find entity-name="mantle.order.OrderItem" list="MonthlyOrderItems">
+                <econdition field-name="itemTypeEnumId" value="ItemDonationMonthly"/>
+            </entity-find>
+
+            <iterate list="MonthlyOrderItems" entry="MonthlyOrderItem">
+                
+                <script>
+                    DonationAmounts.push(MonthlyOrderItem.unitListPrice)
+                    OrderIds.push(MonthlyOrderItem.orderId)
+                </script>
+            
+            </iterate>
+
+            <iterate list="OrderIds" entry="OrderId">
+                <entity-find-one entity-name="mantle.order.OrderPart" value-field="OrderPart" auto-field-map="context"/>
+                <set field="PartyId" from="OrderPart.customerPartyId"/>
+                
+            
+            </iterate>
+
+
+
+            <script>
+                println "#################################List of Monthly Order Items"
+                println MonthlyOrderItems
+                println "#################################DonationAmounts"
+                println DonationAmounts
+                println "#################################OrderIds"
+                println OrderIds
+            </script>
+
+            <!-- <set field="DonationAmount" from="monthlyOrderItem.unitListPrice"/>
+            <set field="emailAddress" from="userContactMech.infoString"/>
+            <service-call name="DonationPage.DonationPageServices.handle#Donation" in-map="context" out-map="context"/> -->
         </actions>
     </service>
 </services>

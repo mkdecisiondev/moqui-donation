@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>New Donor</title>
   <link rel="stylesheet" type="text/css" href="stripeElement.css">
   <link href="donate.css" rel="stylesheet">
   <script src="https://js.stripe.com/v3/"></script>
@@ -140,8 +140,15 @@
         <br>
 
         <legend>Donation Amount</legend>
+        <div class="donationFrequencyButtonsContainer">
+          <input type="radio" id="frequency1" name="donationFrequency" value="monthly-donation" required>
+          <label for="frequency1"> Monthly</label>
+
+          <input type="radio" id="frequency2" name="donationFrequency" value="one-time-donation" required>
+          <label for="frequency2"> One-time</label>
+        </div>
         <div class="field col-12">
-          <label for="DonationAmount">How much would you like to donate today?</label>
+          <label for="DonationAmount">How much would you like to donate?</label>
           <input type="text" id="DonationAmount" name="DonationAmount" required data-value-missing="Please enter an amount">
         </div>
 
