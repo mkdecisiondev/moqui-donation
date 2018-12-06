@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="gnd-css-draft.css?version=21" />
+    <link rel="stylesheet" type="text/css" media="screen" href="gnd-css-draft.css?version=32" />
     <script src="main.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="handleGND.js?version=8"></script>
@@ -35,84 +35,55 @@
             <section class="subheaderAndAmountsSection">
                 <p class="subheader">Your kind donations help us grow and spread our message.</p>
                 <p class="subheader" id="donateNow">Donate now</p>
-                <!-- <div clas="donationFrequencyContainer">
-                    <button> Monthly donations </button>
-                    <button> One-time donation </button>
-                </div> -->
 
                 <form action="/apps/GND/FirstTimeDonor/HandleFirstTimeDonationForm" method="post" id="payment-form">
 
-                <div class="donationFrequencyButtonsContainer">
-                    <input type="radio" id="frequency1" name="donationFrequency">
-                    <label for="frequency1"> Monthly donations </label>
+                    <div class="donationFrequencyButtonsContainer">
+                        <input type="radio" id="frequency1" name="donationFrequency">
+                        <label for="frequency1"> Monthly donations</label>
 
-                    <input type="radio" id="frequency2" name="donationFrequency">
-                    <label for="frequency2"> One-time donations </label>
-                </div>
+                        <input type="radio" id="frequency2" name="donationFrequency">
+                        <label for="frequency2"> One-time donations </label>
+                    </div>
             
             
-                <div class="donationButtonsContainer">
-                    <input type="radio" id="amountBox1" name="DonationAmount" value="31" onclick="checkDonationAmount()">
-                    <label for="amountBox1"> $31 </label>
+                    <div class="donationButtonsContainer">
+                        <input type="radio" id="amountBox1" name="DonationAmount" value="31" onclick="checkDonationAmount()">
+                        <label for="amountBox1"> $31 </label>
 
-                    <input type="radio" id="amountBox2" name="DonationAmount" value="51">
-                    <label for="amountBox2"> $51 </label>
+                        <input type="radio" id="amountBox2" name="DonationAmount" value="51">
+                        <label for="amountBox2"> $51 </label>
 
-                    <input type="radio" id="amountBox3" name="DonationAmount" value="101">
-                    <label for="amountBox3"> $101 </label>
+                        <input type="radio" id="amountBox3" name="DonationAmount" value="101">
+                        <label for="amountBox3"> $101 </label>
 
-                    <input type="radio" id="amountBox4" name="DonationAmount" value="251">
-                    <label for="amountBox4"> $251 </label>
+                        <input type="radio" id="amountBox4" name="DonationAmount" value="251">
+                        <label for="amountBox4"> $251 </label>
 
-                    <input type="radio" id="amountBox5" name="DonationAmount" value="501">
-                    <label for="amountBox5"> $501 </label>
+                        <input type="radio" id="amountBox5" name="DonationAmount" value="501">
+                        <label for="amountBox5"> $501 </label>
 
-                    <input type="radio" id="amountBox6" name="DonationAmount" value="1001">
-                    <label for="amountBox6"> $1,001 </label>
+                        <input type="radio" id="amountBox6" name="DonationAmount" value="1001">
+                        <label for="amountBox6"> $1,001 </label>
 
-                    <input type="radio" id="amountBox7" name="DonationAmount" value="2001">
-                    <label for="amountBox7"> $2,001 </label>
+                        <input type="radio" id="amountBox7" name="DonationAmount" value="2001">
+                        <label for="amountBox7"> $2,001 </label>
 
-                    <input type="radio" id="amountBox8" name="DonationAmount" value="5001">
-                    <label for="amountBox8"> $5,001 </label>
+                        <input type="radio" id="amountBox8" name="DonationAmount" value="5001">
+                        <label for="amountBox8"> $5,001 </label>
 
-                    <!-- WORKING: -->
-
-                        <!-- <input type="number" id="amountBox10" name="DonationAmount" placeholder="$ Other (form)"> -->
-
-                    <!-- NOTWORKING: -->
-
-                        <!-- <input type="radio" id="amountBox9" name="DonationAmount">
-                        <label for="amountBox9"> $ Other (radio) </label> -->
-
-                        <!-- <label for="amountBox10"> $ Other <input type="number" id="amountBox10" name="DonationAmount" placeholder="$ Other"> </label> -->
-                  
-                
-                <!-- OTHER AMOUNT BOX INPUT - WORKING -->
-                <!-- <div class="donationOtherContainer">
-                    <label for="amountBoxOther"> $ Other: </label>
-                    <input type="number" id="amountBoxOther" name="DonationAmount" data-value-missing="Please enter an amount">
-                </div> -->
-
-
-
-             <div class="otherDonationContainer">
-
-                 <span class="otherRadioAndLabel">
-                     <input type="radio" id="otherAmountRadio"
-                     name="DonationAmount" value="">
-
-                     <label for="otherAmountRadio"> $ </label>
-                 </span>
-
-                 <input type="tel" id="otherAmtNumberInput" name="amount"  placeholder="Other" maxlength="7" pattern="\d+(\.\d{2})?" onclick="setOtherAmount()" onchange="setOtherAmount()" data-value-missing="Please enter an amount" data-pattern-mismatch="Please enter numbers as whole dollars or dollars and cents (2 decimals)"> 
-             </div>
-
-        </div> 
+                        <div class="otherDonationContainer">
+                            <span class="otherRadioAndLabel">
+                                <input type="radio" id="otherAmountRadio"
+                                name="DonationAmount" value="">
+                                <label for="otherAmountRadio"> $ </label>
+                            </span>
+                            <input type="tel" id="otherAmtNumberInput" name="amount"  placeholder="Other" maxlength="7" pattern="\d+(\.\d{2})?" onclick="setOtherAmount()" onchange="setOtherAmount()" data-value-missing="Please enter an amount" data-pattern-mismatch="Please enter numbers as whole dollars or dollars and cents (2 decimals)"> 
+                        </div>
+                    </div> 
                 
                 
             </section>
-
 
             <section class="billingAndCardSection">
                 <!-- <div class="inputFormContainer"></div> -->
@@ -256,7 +227,10 @@
                         </div>
                     </div>
 
-                    <img src="powered_by_stripe.png" alt="powered by Stripe badge" class="stripeBadge">
+                    <div class="badgeContainer">
+                        <img src="powered_by_stripe.png" alt="powered by Stripe badge" class="stripeBadge">
+                        <img src="100-secure.png" alt="100% secure badge" class="secure100Badge">
+                    </div>
                             
                     <br/>
                     

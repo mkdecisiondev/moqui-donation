@@ -21,10 +21,6 @@ footer{
     text-align: center;
 }
 
-form{
-    align-
-}
-
 button{
     color: white;
     width: 200px;
@@ -57,7 +53,6 @@ sup{
     font-size: 1em;
     color: red;
 }
-
 
 
 /* HEADER SECTION */
@@ -93,6 +88,7 @@ sup{
     width: 100px;
 }
 
+
 /* SPLASH SECTION */
 .splashBanner{
     background-image: url("GNDDonationSplash.png");
@@ -113,8 +109,8 @@ sup{
 }
 
 
-
 /* SUBHEADER & DONATION BUTTONS SECTION */
+
 .subheaderAndAmountsSection{
     display: flex;
     flex-direction: column;
@@ -136,16 +132,18 @@ sup{
     margin-bottom: 10vh;
 }
 
-/* .donationFrequencyContainer{
-    display: inline-block;
-    width: 50%;
-} */
+#payment-form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
 
 .donationButtonsContainer{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 33%;
+    width: 50%;
     justify-content: space-evenly;
 }
 
@@ -186,7 +184,6 @@ sup{
     text-align: center;
 }
 
-
 .donationButtonsContainer input[type="radio"]:checked + label { 
     background-color: #4849CF;
 }
@@ -205,64 +202,16 @@ sup{
     cursor: text; 
 }
 
-/* .donationOtherContainer{
-    margin-top: 4vh;
-}
-
-.donationOtherContainer label{
-    font-family: 'Noto Sans SC', sans-serif;
-    font-size: 16px;
-    color: #ED9757;
-    width: 65px;
-    height: 25px; 
-    text-align: center;
-}
-
-.donationOtherContainer input[type="number"] {
-    cursor: text;
-    border-radius: 5px;
-    background-color: #f7f7f7;
-    border: 1px solid #999;
-    color: #ED9757;
-    width: 200px;
-    height: 25px;
-    outline: none;
-    font-family: 'Noto Sans SC', sans-serif;
-} */
-
-
-************WORK IN PROGRESS**************
-/* this is the DIV */
 .otherDonationContainer{
-    margin-top: 4vh;
-    border: 3px solid blue;
+    margin-top: 2vh;
     position: relative;
-    /* height: 60px; */
-    /* padding: 0 1rem 0 0; */
-}
-
-/* this is the SPAN */
-.otherRadioAndLabel{
-    /* border: 2px solid red;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: calc(100% - 1rem);
-    padding: 0; */
 }
 
 .otherDonationContainer input[type="radio"]{
     display: none;
-    /* border: 0;
-    clip: rect(0, 0, 0, 0);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    width: 1px; */
 }
 
 .otherDonationContainer label{
-    /* display:inline-block; */
     background-color:#ED9757;
     padding: 10px 20px;
     font-family: 'Noto Sans SC', sans-serif;
@@ -274,11 +223,7 @@ sup{
     cursor: pointer;
     width: 65px;
     height: 25px;
-    /* text-align: center; */
-    /* width: 100%; */
     text-align: left;
-    /* padding: 10px 20px; */
-    /* min-width: 85px; */
 }
 
 .otherDonationContainer label:hover{
@@ -286,52 +231,20 @@ sup{
     cursor: pointer;
 }
 
-/* .otherDonationContainer input[type="radio"]:checked + label { 
-    background-color: #4849CF;
-} */
-
 .otherDonationContainer input[type="tel"]{
-    /* position: absolute;
-    border: none;
-    clip: auto; */
     border: none;
     color: white;
-    /* left: 25px; */
-    /* top: 7px; */
-    /* padding: 5px 0 5px 0; */
-    /* position: absolute; */
-    /* clip: auto; */
-    /* height: auto; */
-    /* width: 65px; */
-    /* overflow: visible; */
-    /* min-width: 55px; */
     font-size: 16px;
-    /* border-radius: 3px; */
     text-align: left;
     background: none;
     font-family: 'Noto Sans SC', sans-serif;
-    margin: -5em;
+    margin-left: -5em;
     width: 60px;
 }
 
-.otherDonationContainer::placeholder{
+/* .otherDonationContainer::placeholder{
     color: white;
-}
-
-
-/* this is the RADIO input */
-/* NA */
-/* this is the LABEL for radio input */
-/* NA */
-/* this is the TEXT input */
-#otherAmtNumberInput{
-    
-}
-/* ************WORK IN PROGRESS************** */
-
-
-
-/* BETA */
+} */
 
 .donationFrequencyButtonsContainer input[type="radio"] {
     display: none;
@@ -339,14 +252,6 @@ sup{
 
 .donationFrequencyButtonsContainer label {
     display:inline-block;
-    /* background-color:#ED9757;
-    padding: 10px 20px; */
-    /* font-family: 'Noto Sans SC', sans-serif; */
-    /* font-size:16px; */
-    /* border-radius: 5px;   */
-    /* color: white;   */
-    /* width: 65px; */
-    /* height: 25px; */
     margin-top: 2vh;
     margin-bottom: 0;
     cursor: pointer;
@@ -369,9 +274,6 @@ sup{
 .donationFrequencyButtonsContainer input[type="radio"]:checked + label { 
     background-color: #4849CF;
 }
-
-
-
 
 
 /* BILLING AND CARD INFO FORMS */
@@ -411,14 +313,6 @@ select{
     flex-wrap: wrap;
 }
 
-/* .inputFormContainer{
-    width: 75%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-} */
-
 .labelAndFieldHalf{
     width: 45%;
     margin-left: 2.5%;
@@ -433,8 +327,6 @@ select{
 }
 
 .labelAndFieldThird{
-    /* width: 33%; */
-    /* display: inline-block; */
     margin-left: 2.5%
 }
 
@@ -476,12 +368,17 @@ select{
     text-align: center;
 }
 
+.badgeContainer{
+    text-align: center;
+}
 .stripeBadge{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
     width: 100px;
-    margin-top: -1.5em;
+    margin-top: -0.4em;
+}
+
+.secure100Badge{
+    height: 27.5px;
+    margin-top: -0.4em;
 }
 
 

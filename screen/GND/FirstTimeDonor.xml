@@ -9,7 +9,7 @@
 
 
     <widgets>
-        <link text="Returning donor? Click here!" url="../ReturningDonor"/>
+        <!-- <link text="Returning donor? Click here!" url="../ReturningDonor"/> -->
         <render-mode>
             <text type="html,vuet" location="component://GND/screen/GND/gnd-html-draft.html"/>
         </render-mode>

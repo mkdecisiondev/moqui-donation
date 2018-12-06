@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC:900|Raleway');
+
+.splashPhoto{
+    width: 100%;
+}
+
+h1{
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 4em;
+    background: none;
+    color: #ED9757;
+    margin-bottom: 0;
+    margin-top: 5vh;
+}
+
+h3 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.75em;
+    margin-bottom: 0;
+}
+
+p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
+    color: black
+}
+
+.thankYouSection{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-align: center;
+}
+
+a{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
+    color: #459ABC;
+    text-decoration: none;
+}
