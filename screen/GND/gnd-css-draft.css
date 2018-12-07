@@ -1,0 +1,384 @@
+/* TODOS:
+*Change all font PX to EM */
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC:900|Raleway');
+
+/* General Styling */
+header{
+    position: static;
+    width: 100%;
+    z-index: 100;
+    height: 50px;
+}
+
+footer{
+    background-color: #959595;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    text-align: center;
+}
+
+button{
+    color: white;
+    width: 200px;
+    background-color: #459ABC;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    outline: none;
+}
+
+button:hover{
+    background-color: #7BD0FF;
+}
+
+legend{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.75em;
+    margin-bottom: 4vh;
+    text-align: center;
+}
+
+label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
+}
+
+sup{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
+    color: red;
+}
+
+
+/* HEADER SECTION */
+
+.headerContainer{
+    align-items: center; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.headerLogo{
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
+/* .headerLogo2{
+    background-image: url("gnd-logo.svg")
+} */
+
+.headerSecure{
+    background-image: url("gnd-secure-response.png");
+    background-position: left top;
+    background-repeat: no-repeat;
+    color: #98a0b6;
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    height: 40px;
+    margin-right: 0.5em;
+    padding: 0 0 0 32px;
+    width: 100px;
+}
+
+
+/* SPLASH SECTION */
+.splashBanner{
+    background-image: url("GNDDonationSplash.png");
+    background-size: cover;
+    height: 266px;
+    background-repeat: no-repeat;
+    background-position-y: -50px;
+}
+
+#splashTitle{
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 4em;
+    text-align: center;
+    background: none;
+    color: white;
+    padding-top: 5.5%;
+    padding-left: 33%;
+    margin-top: 0;
+}
+
+
+/* SUBHEADER & DONATION BUTTONS SECTION */
+
+.subheaderAndAmountsSection{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-top: 6vh;
+}
+
+.subheader{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.75em;
+    color: black;
+}
+
+#donateNow{
+    margin-top: -3vh;
+    font-weight: bold;
+    font-size: 2.5em;
+    margin-bottom: 6vh;
+}
+
+#payment-form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.donationButtonsContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 50%;
+    justify-content: space-evenly;
+}
+
+.donationButtonsContainer input[type="radio"] {
+    display: none;
+}
+
+.donationButtonsContainer input[type="number"] {
+    width: 75px;
+    display:inline-block;
+    background-color:#ED9757;
+    padding: 10px 20px;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size:16px;
+    border-radius: 5px;  
+    color: white;  
+    margin-top: 2vh;
+    margin-bottom: 0;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    outline: none;
+}
+
+.donationButtonsContainer label {
+    display:inline-block;
+    background-color:#ED9757;
+    padding: 10px 20px;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size:16px;
+    border-radius: 5px;  
+    color: white;  
+    margin-top: 2vh;
+    margin-bottom: 0;
+    cursor: pointer;
+    width: 65px;
+    height: 25px;
+    text-align: center;
+}
+
+.donationButtonsContainer input[type="radio"]:checked + label { 
+    background-color: #4849CF;
+}
+
+.donationButtonsContainer input[type="number"]:focus {
+    background-color: #4849CF;
+}
+
+.donationButtonsContainer label:hover {
+    background-color:#585AFF;
+    cursor: pointer;
+}
+
+.donationButtonsContainer input[type="number"]:hover {
+    background-color:#585AFF;
+    cursor: text; 
+}
+
+.otherDonationContainer{
+    /* margin-top: 2vh; */
+    position: relative;
+}
+
+.otherDonationContainer input[type="radio"]{
+    display: none;
+}
+
+.otherDonationContainer label{
+    background-color:#ED9757;
+    padding: 10px 20px;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size:16px;
+    border-radius: 5px;  
+    color: white;  
+    margin-top: 2vh;
+    margin-bottom: 0;
+    cursor: pointer;
+    width: 65px;
+    height: 25px;
+    text-align: left;
+}
+
+.otherDonationContainer label:hover{
+    background-color:#585AFF;
+    cursor: pointer;
+}
+
+.otherDonationContainer input[type="tel"]{
+    border: none;
+    color: white;
+    font-size: 16px;
+    text-align: left;
+    background: none;
+    font-family: 'Noto Sans SC', sans-serif;
+    margin-left: -5em;
+    width: 60px;
+}
+
+/* .otherDonationContainer::placeholder{
+    color: white;
+} */
+
+.donationFrequencyButtonsContainer input[type="radio"] {
+    display: none;
+}
+
+.donationFrequencyButtonsContainer label {
+    display:inline-block;
+    margin-top: 2vh;
+    margin-bottom: 0;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    width: 200px;
+    background-color: #459ABC;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    outline: none;
+}
+
+.donationFrequencyButtonsContainer label:hover {
+    background-color:#7BD0FF;
+    cursor: pointer;
+}
+
+.donationFrequencyButtonsContainer input[type="radio"]:checked + label { 
+    background-color: #4849CF;
+}
+
+
+/* BILLING AND CARD INFO FORMS */
+
+.billingAndCardSection{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    /* align-items: center; */
+    padding: 0 8vw 8vh 8vw;
+    margin-top: 8vh;
+}
+
+.inputField{
+    width: 100%;
+    height: 3em;
+    cursor: text;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    border: 1px solid #999;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"] {
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+    padding-left: 5px;
+}
+
+select{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em; 
+}
+
+.billingContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.labelAndFieldHalf{
+    width: 45%;
+    margin-left: 2.5%;
+    margin-bottom: 2.5%
+}
+
+.labelAndFieldFull{
+    width: 100%;
+    margin-left: 2.5%;
+    margin-right: 5%;
+    margin-bottom: 2.5%
+}
+
+.labelAndFieldThird{
+    margin-left: 2.5%
+}
+
+#cityField{
+    width: 57.5%;
+    margin-bottom: 2.5%
+}
+
+#stateField{
+    width: 15%;
+    margin-bottom: 2.5%
+}
+
+#zipField{
+    width: 15%;
+    margin-bottom: 2.5%
+}
+
+
+/* STRIPE & DONATE BUTTON */
+
+.stripeContainer{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-align: center;
+}
+
+.stripeForm{
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    border: 1px solid #999;
+    padding: 10px 5px 5px 5px;
+    margin: 0 20% 4vh 20%;
+    height: 1.5em;
+}
+
+#donateButton{
+    text-align: center;
+}
+
+.badgeContainer{
+    text-align: center;
+}
+.stripeBadge{
+    width: 100px;
+}
+
+.secure100Badge{
+    height: 32px;
+}
+
+
+

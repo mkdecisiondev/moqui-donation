@@ -6,7 +6,8 @@
         <default-response url="."/>
     </transition>
     <widgets>
-        <label type="h1" text="Thank you for your generous donation!"/>
-        <link text="Return to donations page" url="../ReturningDonor"/>
+        <render-mode>
+            <text type="html,vuet" location="component://GND/screen/GND/gnd-thankyou.html"/>
+        </render-mode>
     </widgets>
 </screen>

@@ -33,7 +33,8 @@ class GNDStripeCustomer {
     // Charge the Customer instead of the card:
     Map<String, Object> customerParams = new HashMap<>();
 
-    String amount = ec.context.DonationAmount
+    String amount = ec.context.DonationAmount.toString()
+    println("@!@!@!@!@@!@!@!DONATION AMOUNT STRING IS ${amount}")
     Double result = Double.parseDouble(amount)*100
     Integer integerAmount = Math.round(result)
     String processedAmount = Integer.toString(integerAmount)
