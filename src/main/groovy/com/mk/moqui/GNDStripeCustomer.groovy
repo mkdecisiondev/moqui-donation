@@ -44,14 +44,4 @@ class GNDStripeCustomer {
     Charge charge = Charge.create(customerParams);
     return
   }
-
-  public static recurringCharge(ExecutionContext ec){
-    Stripe.apiKey = "sk_test_E557Je0PHQJjZKvGIQoa4Vw0";
-    // When it's time to charge the customer again, retrieve the customer ID which is stored as the cardNumber on their associated credit card in Moqui.
-    Map<String, Object> params = new HashMap<>();
-    params.put("amount", 1500); // $15.00 this time
-    params.put("currency", "usd");
-    params.put("customer", ec.context.cardNumber); // Previously stored, then retrieved
-    Charge charge = Charge.create(params);
-  }
 }

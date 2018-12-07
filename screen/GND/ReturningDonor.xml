@@ -2,8 +2,8 @@
 <screen require-authentication="false" standalone="true" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
 
-  <transition name="HandleDonation" require-session-token="false">
-    <service-call name="DonationPage.DonationPageServices.handle#Donation"/>
+  <transition name="HandleDonationForm" require-session-token="false">
+    <service-call name="DonationPage.DonationPageServices.check#DonorEmailAndFrequency"/>
     <default-response url="../ThankYouPage"/>
   </transition>
 
