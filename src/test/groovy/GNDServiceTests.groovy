@@ -52,9 +52,9 @@ class GNDServiceTests extends Specification {
         String firstName = "Ryan"
         String lastName = "Higgins"
         String emailAddress = "rhiggins32@gmail.com"
-        String donation = "100"
+        String donationAmount = "100"
         
-        Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.send#ConfirmationEmail").parameters([firstName: firstName, lastName: lastName, emailAddress: emailAddress, DonationAmount: donation]).call()
+        Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.send#ConfirmationEmail").parameters([firstName: firstName, lastName: lastName, emailAddress: emailAddress, donationAmount: donationAmount]).call()
         println(serviceCall);
 
         then: 
