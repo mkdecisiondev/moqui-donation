@@ -20,14 +20,14 @@
 
     <service verb="charge" noun="StripeCustomer" type="java" location="com.mk.moqui.GNDStripeCustomer" method="chargeStripeCustomer" authenticate="anonymous-all">
         <in-parameters>
-            <parameter name="DonationAmount" required="true"/>
+            <parameter name="donationAmount" required="true"/>
             <parameter name="description" required="true"/>
         </in-parameters>
     </service>
 
     <service verb="send" noun="ConfirmationEmail" type="java" location="com.mk.moqui.sendConfirmationEmail" method="sendEmail" authenticate="anonymous-all">
         <in-parameters>
-            <parameter name="DonationAmount" required="true"/>
+            <parameter name="donationAmount" required="true"/>
             <parameter name="firstName" required="true"/>
             <parameter name="lastName" required="true"/>
             <parameter name="emailAddress" required="true"/>
@@ -80,7 +80,7 @@
 
     <service verb="create" noun="OrderForMonthlyDonationPlan">
         <in-parameters>
-            <parameter name="DonationAmount" required="true"/>
+            <parameter name="donationAmount" required="true"/>
             <parameter name="emailAddress" required="true"/>
         </in-parameters>
 
@@ -105,10 +105,10 @@
 
             <set field="itemTypeEnumId" value="ItemDonationMonthly"/>
             <set field="quantity" value="1"/>
-            <set field="unitListPrice" from="DonationAmount"/>
+            <set field="unitListPrice" from="donationAmount"/>
             <service-call name="mantle.order.OrderServices.create#OrderItem" in-map="context" out-map="context"/>
 
-            <set field="partTotal" from="DonationAmount"/>
+            <set field="partTotal" from="donationAmount"/>
             <service-call name="mantle.order.OrderServices.update#OrderPart" in-map="context" out-map="context"/>
 
             <set field="paymentTypeEnumId" value="PtInvoicePayment"/>
@@ -117,13 +117,13 @@
 
             <set field="fromPartyId" value="GND"/>
             <set field="toPartyId" from="customerPartyId"/>
-            <set field="unpaidTotal" from="DonationAmount"/>
+            <set field="unpaidTotal" from="donationAmount"/>
             <set field="appliedPaymentsTotal" value="0.00"/>
-            <set field="invoiceTotal" from="DonationAmount"/>
+            <set field="invoiceTotal" from="donationAmount"/>
             <set field="description" value="Monthly Donation"/>
             <service-call name="mantle.account.InvoiceServices.create#Invoice" in-map="context" out-map="context"/>
 
-            <set field="amount" from="DonationAmount"/>
+            <set field="amount" from="donationAmount"/>
             <service-call name="mantle.account.InvoiceServices.create#InvoiceItem" in-map="context" out-map="context"/>
 
             <service-call name="mantle.account.PaymentServices.send#PromisedPayment" in-map="context" out-map="context"/>
@@ -136,9 +136,9 @@
         </actions>
     </service>
 
-    <service verb="post" noun="DonationData">
+    <service verb="post" noun="DonationData" authenticate="anonymous-all">
         <in-parameters>
-            <parameter name="DonationAmount" required="true"/>
+            <parameter name="donationAmount" required="true"/>
             <parameter name="partyId" required="true"/>
         </in-parameters>
 
@@ -153,10 +153,10 @@
 
             <set field="itemTypeEnumId" value="ItemDonation"/>
             <set field="quantity" value="1"/>
-            <set field="unitListPrice" from="DonationAmount"/>
+            <set field="unitListPrice" from="donationAmount"/>
             <service-call name="mantle.order.OrderServices.create#OrderItem" in-map="context" out-map="context"/>
 
-            <set field="partTotal" from="DonationAmount"/>
+            <set field="partTotal" from="donationAmount"/>
             <service-call name="mantle.order.OrderServices.update#OrderPart" in-map="context" out-map="context"/>
 
             <set field="paymentTypeEnumId" value="PtInvoicePayment"/>
@@ -165,13 +165,13 @@
 
             <set field="fromPartyId" value="GND"/>
             <set field="toPartyId" from="customerPartyId"/>
-            <set field="unpaidTotal" from="DonationAmount"/>
+            <set field="unpaidTotal" from="donationAmount"/>
             <set field="appliedPaymentsTotal" value="0.00"/>
-            <set field="invoiceTotal" from="DonationAmount"/>
+            <set field="invoiceTotal" from="donationAmount"/>
             <set field="description" value="Donation"/>
             <service-call name="mantle.account.InvoiceServices.create#Invoice" in-map="context" out-map="context"/>
 
-            <set field="amount" from="DonationAmount"/>
+            <set field="amount" from="donationAmount"/>
             <service-call name="mantle.account.InvoiceServices.create#InvoiceItem" in-map="context" out-map="context"/>
 
             <service-call name="mantle.account.PaymentServices.send#PromisedPayment" in-map="context" out-map="context"/>
@@ -186,9 +186,9 @@
         </actions>
     </service>
 
-    <service verb="handle" noun="Donation">
+    <service verb="handle" noun="Donation" authenticate="anonymous-all">
         <in-parameters>
-            <parameter name="DonationAmount" required="true"/>
+            <parameter name="donationAmount" required="true"/>
             <parameter name="emailAddress" required="true"/>
         </in-parameters>
 
@@ -234,7 +234,7 @@
             <parameter name="city"/>
             <parameter name="stateProvinceGeoId"/>
             <parameter name="postalCode"/>
-            <parameter name="DonationAmount"/>
+            <parameter name="donationAmount"/>
         </in-parameters>
 
         <out-parameters>
@@ -280,7 +280,7 @@
         </out-parameters>
 
         <actions>
-            <!-- The ArrayList "orderIds" will contain the orderIds of all orders that contain the "ItemDonationMonthly" item. From this array, we will find the corresponing emailAddress and DonationAmount associated with that monthly-donation order. -->
+            <!-- The ArrayList "orderIds" will contain the orderIds of all orders that contain the "ItemDonationMonthly" item. From this array, we will find the corresponing emailAddress and donationAmount associated with that monthly-donation order. -->
             <set field="orderIds" from="new ArrayList()"/>
             <!-- The ArrayList "Final" is a list that contains all the maps of necessary parameters to run "handle#donation". -->
             <set field="Final" from="new ArrayList()"/>
@@ -297,13 +297,13 @@
             </iterate>
 
             <iterate list="orderIds" entry="orderId">
-                <!-- The Hashmap "Gold" is a map that will contain the parameters emailAddress and DonationAmount. -->
+                <!-- The Hashmap "Gold" is a map that will contain the parameters emailAddress and donationAmount. -->
                 <set field="Gold" from="new HashMap()"/>
 
-                <entity-find entity-name="mantle.order.OrderItem" list="DonationAmounts">
+                <entity-find entity-name="mantle.order.OrderItem" list="donationAmounts">
                     <econdition field-name="orderId" from="orderId"/>
                 </entity-find>
-                <set field="DonationAmount" from="DonationAmounts[0].unitListPrice"/>
+                <set field="donationAmount" from="donationAmounts[0].unitListPrice"/>
 
                 <entity-find-one entity-name="mantle.order.OrderPart" value-field="OrderPart" auto-field-map="context"/>
                 <set field="partyId" from="OrderPart.customerPartyId"/>
@@ -321,7 +321,7 @@
                 <set field="emailAddress" from="contactMechs[0].infoString"/>
 
                 <script>
-                    Gold.put("DonationAmount", DonationAmount)
+                    Gold.put("donationAmount", donationAmount)
                     Gold.put("emailAddress", emailAddress)
 
                     Final.push(Gold)

@@ -41,7 +41,7 @@ public class sendConfirmationEmail {
     
     String HTMLBODY = """<h3>Guru Nanak Dwara thanks you!</h3>
     <p>
-    Dear ${ec.context.firstName} ${ec.context.lastName}, thank you so much for your generous donation of \$${ec.context.DonationAmount}!</p>""";
+    Dear ${ec.context.firstName} ${ec.context.lastName}, thank you so much for your generous donation of \$${ec.context.donationAmount}!</p>""";
 
     try {
       AmazonSimpleEmailService client = 
