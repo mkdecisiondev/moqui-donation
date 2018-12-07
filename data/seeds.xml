@@ -38,6 +38,7 @@
     <mantle.party.PartyRole partyId="GND" roleTypeId="OrgInternal"/>
     <mantle.party.PartyRole partyId="GND" roleTypeId="Vendor"/>
     <moqui.basic.Enumeration enumId="ItemDonationMonthly" enumTypeId="ItemType" parentEnumId="ItemSales" description="Monthly Donation"/>
-    <moqui.service.job.ServiceJob jobName="process_monthly_donation" description="GND Monthly Donation Processing"  serviceName="DonationPage.DonationPageServices.process#MonthlyDonation" cronExpression="0 0/2 * * * ?" paused="N">
+    <moqui.service.job.ServiceJob jobName="process_monthly_donation" description="GND Monthly Donation Processing"  serviceName="DonationPage.DonationPageServices.process#MonthlyDonation" cronExpression="0 0/5 * * * ?" paused="N">
     </moqui.service.job.ServiceJob>
+
 </entity-facade-xml>
