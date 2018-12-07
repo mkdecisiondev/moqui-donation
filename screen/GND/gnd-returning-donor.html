@@ -6,8 +6,7 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="gnd-returning-donor-styling.css?version=8" />
-    <script src="main.js"></script>
-    <script src="handleGND.js?version=1"></script>
+    <script src="handleGND.js?version=3"></script>
 
 </head>
 <body>
@@ -41,24 +40,21 @@
                 <p class="subheader"> To donate again, please complete the fields below: </p>
             </section>
 
-            <section>
-                <div class="labelAndFieldHalf">
-                        <label for="emailAddress">Email Address<sup>*</sup></label>
-                        <br/>
-                        <input type="email" id="emailAddress" name="emailAddress" size="30" class="inputField" required data-value-missing="Please enter your Email Address" data-pattern-mismatch="Please enter a valid Email Address">
-                </div>
-            </section>
-
             <section class="donationAmountsSection">
     
                 <!-- *NOTE: UPDATE FORM ACTION AND ID TO RETURNING DONOR TRANSITION -->
-                <form action="/apps/GND/FirstTimeDonor/HandleFirstTimeDonationForm" method="post" id="payment-form">
+                <form action="/apps/GND/ReturningDonor/HandleDonationForm" method="post" id="payment-form">
+                    <div class="labelAndFieldHalf">
+                            <label for="emailAddress">Email Address<sup>*</sup></label>
+                            <br/>
+                            <input type="email" id="emailAddress" name="emailAddress" size="30" class="inputField" required data-value-missing="Please enter your Email Address" data-pattern-mismatch="Please enter a valid Email Address">
+                    </div>
 
                     <div class="donationFrequencyButtonsContainer">
-                        <input type="radio" id="frequency1" name="donationFrequency">
+                        <input type="radio" id="frequency1" name="donationFrequency" value="monthly-donation">
                         <label for="frequency1"> Monthly donations</label>
 
-                        <input type="radio" id="frequency2" name="donationFrequency">
+                        <input type="radio" id="frequency2" name="donationFrequency" value="one-time-donation">
                         <label for="frequency2"> One-time donations </label>
                     </div>
                 
@@ -94,7 +90,7 @@
                                     name="DonationAmount" value="">
                                     <label for="otherAmountRadio"> $ </label>
                                 </span>
-                                <input type="tel" id="otherAmtNumberInput" name="amount"  placeholder="Other" maxlength="7" pattern="\d+(\.\d{2})?" onclick="setOtherAmount()" onchange="setOtherAmount()" data-value-missing="Please enter an amount" data-pattern-mismatch="Please enter numbers as whole dollars or dollars and cents (2 decimals)"> 
+                                <input type="tel" id="otherAmtNumberInput" name="amount"  placeholder="Other" maxlength="7" pattern="\d+(\.\d{2})?" onclick="checkOtherRadio()" onchange="setOtherAmount()" data-value-missing="Please enter an amount" data-pattern-mismatch="Please enter numbers as whole dollars or dollars and cents (2 decimals)"> 
                             </div>
                         </div> 
 

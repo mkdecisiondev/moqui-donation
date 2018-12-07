@@ -9,6 +9,6 @@ function setOtherAmount(){
 function checkOtherRadio(){
     document.getElementById("otherAmountRadio").checked = true
 
-    // console.log("RADIO CHECKED?::: " + document.getElementById("otherAmountRadio").checked);
+    console.log("RADIO CHECKED?::: " + document.getElementById("otherAmountRadio").checked);
 }
 
