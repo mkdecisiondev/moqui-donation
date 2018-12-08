@@ -65,4 +65,15 @@ class GNDServiceTests extends Specification {
         
         }
 
+        //TO DO : 
+
+        //***Create a Stripe Customer
+        //***Charge Customer
+        //*** Returning donor charges customer even if clicked from first time donation 
+        //***Test the CRON Service for processing Monthly Donations 
+        //**CustomerId/Email stored from Stripe Object into Moqui 
+        //**Finalized Data Document for GND Donation Reports 
+        //**Error handling for Stripe CC decline (page or message?)
+        
+
 }
