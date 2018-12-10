@@ -26,7 +26,9 @@ class GNDServiceTests extends Specification {
 
     def setup() {
         ec.user.loginUser("john.doe", "moqui")
+
         // we still have to disableAuthz even though a user is logged in because this user does not have permission to call this service directly (normally is called through a screen with inherited permission)
+
         ec.artifactExecution.disableAuthz()
         ec.transaction.begin(null)
     }
@@ -104,6 +106,44 @@ class GNDServiceTests extends Specification {
         test2OrderPart.partTotal.toString() == "200"
         test2OrderItem.itemTypeEnumId == "ItemDonation"
     }
+  
+    def "Creates a Stripe Customer when donation is submitted" (){
+         when:
+         String firstName = "Ryan"
+         String lastName = "Higgins"
+         String emailAddress = "rhiggins32@gmail.com"
+         String stripeToken = "tok_visa"
+         String donationAmount = "100"
+        
+         Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.create#StripeCustomer").parameters([firstName: firstName, lastName: lastName, emailAddress: emailAddress, donationAmount: donationAmount, stripeToken: stripeToken]).call()
+         println(serviceCall);
+
+         then: 
+
+         serviceCall.stripeCustomerId != null;
+    }
+
+    
+    def "Charges correct Stripe Customer when donation is submitted" (){
+         when:
+         String firstName = "Ryan"
+         String lastName = "Higgins"
+         String emailAddress = "rhiggins32@gmail.com"
+         String stripeCustomerId = "cus_E8CuqtHMk4l8hH"
+         String donationAmount = "100"
+        
+         Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.charge#StripeCustomer").parameters([firstName: firstName, lastName: lastName, donationAmount: donationAmount, description: stripeCustomerId ]).call()
+         println(serviceCall);
+
+         then: 
+
+         serviceCall.paid != null;
+     }
+
+}
+        
+        
+        
 
         //**Finalized Data Document for GND Donation Reports 
         
@@ -111,5 +151,3 @@ class GNDServiceTests extends Specification {
         //**Error handling for Stripe CC decline (page or message?)
                 //please try again or use a different payment method?
         
-
-}
