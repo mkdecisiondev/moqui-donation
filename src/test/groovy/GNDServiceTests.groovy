@@ -49,10 +49,10 @@ class GNDServiceTests extends Specification {
     // }
     def "Sends an email to user when service is called " (){
         when:
-        String firstName = "Ryan"
-        String lastName = "Higgins"
-        String emailAddress = "rhiggins32@gmail.com"
-        String donationAmount = "100"
+        String firstName = "Young"
+        String lastName = "Hsu"
+        String emailAddress = "justin1020@gmail.com"
+        String donationAmount = "1000"
         
         Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.send#ConfirmationEmail").parameters([firstName: firstName, lastName: lastName, emailAddress: emailAddress, donationAmount: donationAmount]).call()
         println(serviceCall);
