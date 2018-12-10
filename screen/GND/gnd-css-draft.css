@@ -5,7 +5,7 @@
 
 /* Media queries at the bottom */
 
-/* General Styling */
+/* GENERAL STYLING */
 header{
     position: static;
     width: 100%;
@@ -71,10 +71,6 @@ sup{
     width: 40px;
     cursor: pointer;
 }
-
-/* .headerLogo2{
-    background-image: url("gnd-logo.svg")
-} */
 
 .headerSecure{
     background-image: url("lock.svg");
@@ -223,7 +219,6 @@ sup{
 }
 
 .otherDonationContainer{
-    /* margin-top: 2vh; */
     position: relative;
 }
 
@@ -261,10 +256,6 @@ sup{
     margin-left: -5em;
     width: 60px;
 }
-
-/* .otherDonationContainer::placeholder{
-    color: white;
-} */
 
 .donationFrequencyButtonsContainer{
     display: flex;

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="gnd-returning-donor-styling.css?version=25" />
+    <link rel="stylesheet" type="text/css" media="screen" href="gnd-returning-donor-styling.css?version=34" />
     <script src="handleGND.js?version=3"></script>
 
 </head>
@@ -32,27 +32,11 @@
                 </div>
             </section>
 
-            <section class="subheaderSection">
-                <p class="subheader">Thank you for your continued generosity.</p>
+            <section class="subheaderAndAmountsSection">
                 <p class="subheader" id="donateNow">Donate again</p>
-            </section>
-            
-            <!-- <section class="subheaderSection">
-                <p class="subheader" id="donateNow"> Thank you for your continued generosity </p>
-                <p class="subheader"> To donate again, please complete the fields below: </p>
-            </section> -->
+                <a href="./FirstTimeDonor" class="hyperLink"> First-time donor? </a>
 
-            <section class="donationAmountsSection">
-    
                 <form action="/apps/GND/ReturningDonor/HandleDonationForm" method="post" id="payment-form">
-
-                    <a href="./FirstTimeDonor" class="hyperLink"> First-time donor? </a>
-
-                    <div class="labelAndFieldHalf">
-                            <label for="emailAddress">Email Address<sup>*</sup></label>
-                            <br/>
-                            <input type="email" id="emailAddress" name="emailAddress" size="30" class="inputField" required data-value-missing="Please enter your Email Address" data-pattern-mismatch="Please enter a valid Email Address">
-                    </div>
 
                     <div class="donationFrequencyButtonsContainer">
                         <input required type="radio" id="frequency1" name="donationFrequency" value="monthly-donation">
@@ -61,56 +45,67 @@
                         <input required type="radio" id="frequency2" name="donationFrequency" value="one-time-donation">
                         <label for="frequency2"> One-time donations </label>
                     </div>
-                
-                
-                        <div class="donationButtonsContainer">
-                            <input type="radio" id="amountBox1" name="DonationAmount" value="31" onclick="checkDonationAmount()">
-                            <label for="amountBox1"> $31 </label>
-    
-                            <input type="radio" id="amountBox2" name="DonationAmount" value="51">
-                            <label for="amountBox2"> $51 </label>
-    
-                            <input type="radio" id="amountBox3" name="DonationAmount" value="101">
-                            <label for="amountBox3"> $101 </label>
-    
-                            <input type="radio" id="amountBox4" name="DonationAmount" value="251">
-                            <label for="amountBox4"> $251 </label>
-    
-                            <input type="radio" id="amountBox5" name="DonationAmount" value="501">
-                            <label for="amountBox5"> $501 </label>
-    
-                            <input type="radio" id="amountBox6" name="DonationAmount" value="1001">
-                            <label for="amountBox6"> $1,001 </label>
-    
-                            <input type="radio" id="amountBox7" name="DonationAmount" value="2001">
-                            <label for="amountBox7"> $2,001 </label>
-    
-                            <input type="radio" id="amountBox8" name="DonationAmount" value="5001">
-                            <label for="amountBox8"> $5,001 </label>
-    
-                            <div class="otherDonationContainer">
-                                <span class="otherRadioAndLabel">
-                                    <input type="radio" id="otherAmountRadio"
-                                    name="DonationAmount" value="">
-                                    <label for="otherAmountRadio"> $ </label>
-                                </span>
-                                <input type="tel" id="otherAmtNumberInput" name="amount"  placeholder="Other" maxlength="7" pattern="\d+(\.\d{2})?" onclick="checkOtherRadio()" onchange="setOtherAmount()" data-value-missing="Please enter an amount" data-pattern-mismatch="Please enter numbers as whole dollars or dollars and cents (2 decimals)"> 
-                            </div>
-                        </div> 
+
+                    <div class="donationButtonsContainer">
+                        <input type="radio" id="amountBox1" name="DonationAmount" value="31" onclick="checkDonationAmount()">
+                        <label for="amountBox1"> $31 </label>
+
+                        <input type="radio" id="amountBox2" name="DonationAmount" value="51">
+                        <label for="amountBox2"> $51 </label>
+
+                        <input type="radio" id="amountBox3" name="DonationAmount" value="101">
+                        <label for="amountBox3"> $101 </label>
+
+                        <input type="radio" id="amountBox4" name="DonationAmount" value="251">
+                        <label for="amountBox4"> $251 </label>
+
+                        <input type="radio" id="amountBox5" name="DonationAmount" value="501">
+                        <label for="amountBox5"> $501 </label>
+
+                        <input type="radio" id="amountBox6" name="DonationAmount" value="1001">
+                        <label for="amountBox6"> $1,001 </label>
+
+                        <input type="radio" id="amountBox7" name="DonationAmount" value="2001">
+                        <label for="amountBox7"> $2,001 </label>
+
+                        <input type="radio" id="amountBox8" name="DonationAmount" value="5001">
+                        <label for="amountBox8"> $5,001 </label>
+
+                        <div class="otherDonationContainer">
+                            <span class="otherRadioAndLabel">
+                                <input type="radio" id="otherAmountRadio"
+                                name="DonationAmount" value="">
+                                <label for="otherAmountRadio"> $ </label>
+                            </span>
+                            <input type="tel" id="otherAmtNumberInput" name="amount"  placeholder="Other" maxlength="7" pattern="\d+(\.\d{2})?" onclick="checkOtherRadio()" onchange="setOtherAmount()" data-value-missing="Please enter an amount" data-pattern-mismatch="Please enter numbers as whole dollars or dollars and cents (2 decimals)"> 
+                        </div>
+                    </div> 
+
+
+                </section>
+
+                <section class="billingAndCardSection">
+                    <div class="billingContainer">
+                        <div class="labelAndFieldFull">
+                            <label for="emailAddress">Email Address<sup>*</sup></label>
+                            <br/>
+                            <input type="email" id="emailAddress" name="emailAddress" size="30" class="inputField" required data-value-missing="Please enter your Email Address" data-pattern-mismatch="Please enter a valid Email Address">
+                        </div>
+                    </div>
 
                     <div class="badgeContainer">
                         <img src="powered_by_stripe.png" alt="powered by Stripe badge" class="stripeBadge">
                         <img src="100-secure.png" alt="100% secure badge" class="secure100Badge">
                     </div>
-
+    
                     <br/>
-
+    
                     <div id="donateButton">
                             <button class="button">Submit donation</button>
                     </div>
-
+                    
                 </form>
-            </section>            
+            </section>
         </article>
     </main>
 
@@ -118,5 +113,5 @@
         <p>Guru Nanak Dwara is a tax-exempt 501c(3) non-profit charitable organization. Every generous donation is tax deductible in the USA.</p>
     </footer>
 
-</body>
+    </body>
 </html>

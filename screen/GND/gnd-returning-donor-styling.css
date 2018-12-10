@@ -1,10 +1,26 @@
-/* GENERAL STYLING */
+/* TODOS:
+*Change all font PX to EM */
+
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC:900|Raleway');
 
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* Media queries at the bottom */
+
+/* GENERAL STYLING */
+header{
+    position: static;
+    width: 100%;
+    z-index: 100;
+    height: 50px;
+}
+
+footer{
+    background-color: #959595;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    text-align: center;
 }
 
 button{
@@ -33,25 +49,9 @@ sup{
     color: red;
 }
 
-footer{
-    background-color: #959595;
-    color: white;
-    font-family: 'Raleway', sans-serif;
-    font-size: 12px;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    text-align: center;
-}
 
 
 /* HEADER SECTION */
-
-header{
-    position: static;
-    width: 100%;
-    z-index: 100;
-    height: 50px;
-}
 
 .headerContainer{
     align-items: center; 
@@ -83,33 +83,35 @@ header{
 /* SPLASH SECTION */
 
 .splashBanner{
-    background-image: url("GNDDonationSplash.png");
+    background-image: url("donationSplash.png");
     background-size: cover;
-    height: 266px;
+    height: 37vh;
     background-repeat: no-repeat;
-    background-position-y: -50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 33%;
 }
 
 #splashTitle{
     font-family: 'Noto Sans SC', sans-serif;
-    font-size: 4em;
+    font-size: 4.5em;
     text-align: center;
     background: none;
     color: white;
-    padding-top: 5.5%;
-    padding-left: 33%;
+    padding-top: 7.5%;
     margin-top: 0;
 }
 
 
-/* SUBHEADER SECTION */
+/* SUBHEADER & DONATIONS BUTTONS SECTION */
 
-.subheaderSection{
+.subheaderAndAmountsSection{
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    margin-top: 5vh;
+    margin-top: 6vh;
 }
 
 .subheader{
@@ -119,7 +121,7 @@ header{
 }
 
 #donateNow{
-    margin-top: -3vh;
+    margin-top: 0;
     font-weight: bold;
     font-size: 2.5em;
     margin-bottom: 5vh;
@@ -142,11 +144,14 @@ header{
     text-decoration: underline
 }
 
-.labelAndFieldHalf{
-    width: 45%;
-    margin: 0 auto;
+.labelAndFieldFull{
     margin-top: 0;
+    width: 100%;
+    margin-left: 2.5%;
+    margin-right: 5%;
+    margin-bottom: 2.5%;
 }
+
 .inputField{
     width: 100%;
     height: 3em;
@@ -166,18 +171,24 @@ input[type="email"], input[type="tel"] {
 /* DONATION BUTTONS SECTION */
 .donationAmountsSection{
     display: flex;
-    flex-direction: row;
     flex-wrap: nowrap;
-    margin-top: 0;
-    justify-content: center;
     margin-bottom: 6vh;
+    flex-direction: column;
+    align-items: center;
+}
+
+#payment-form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .donationButtonsContainer{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 50%;
+    width: 60%;
     justify-content: space-evenly;
     margin-bottom: 4vh;
 }
@@ -276,16 +287,19 @@ input[type="email"], input[type="tel"] {
     width: 60px;
 }
 
-/* .otherDonationContainer::placeholder{
-    color: white;
-} */
+.donationFrequencyButtonsContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 60%;
+    justify-content: space-evenly;
+}
 
 .donationFrequencyButtonsContainer input[type="radio"] {
     display: none;
 }
 
 .donationFrequencyButtonsContainer label {
-    display:inline-block;
     margin-top: 2vh;
     margin-bottom: 0;
     cursor: pointer;
@@ -309,6 +323,20 @@ input[type="email"], input[type="tel"] {
     background-color: #4849CF;
 }
 
+.billingAndCardSection{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 0 8vw 8vh 8vw;
+    margin-top: 2vh;
+}
+
+.billingContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 #donateButton{
     text-align: center;
 }
@@ -322,4 +350,38 @@ input[type="email"], input[type="tel"] {
 
 .secure100Badge{
     height: 32px;
+}
+
+
+/* MEDIA QUERIES */
+@media only screen and (max-width: 67.5em){
+    .splashBanner{ 
+        background-image: url("donationSplashSmall.png");
+        /* border: 2px solid red; */
+    }
+    
+    #splashTitle{
+        font-size: 3em;
+    }
+}
+
+@media only screen and (max-width: 47.5em){
+    .splashBanner{
+        background-image: url("donationSplashSmall.png");
+        padding-left: 0px;
+        /* border: 2px solid yellow; */
+    }
+    
+    #splashTitle{
+        font-size: 7vw;
+        text-align: right;
+        word-spacing: 1000px;
+        padding-right: 2%;
+        line-height: 1;
+    }
+
+    .labelAndFieldFull{
+        margin: 0 0 2.5%
+    }
+
 }
