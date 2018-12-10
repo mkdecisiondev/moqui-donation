@@ -77,6 +77,12 @@
         </actions>
     </service>
 
+    <service verb="customApprove" noun="Order">
+        <implements service="mantle.order.OrderServices.change#OrderStatusInterface"/>
+        <actions>
+            <service-call name="mantle.order.OrderServices.update#OrderStatus" out-map="context" in-map="context + [statusId:'OrderApproved']"/>
+        </actions>
+    </service>
 
     <service verb="create" noun="OrderForMonthlyDonationPlan">
         <in-parameters>
@@ -180,7 +186,7 @@
 
             <service-call name="mantle.order.OrderServices.place#Order" in-map="context" out-map="context"/>
 
-            <service-call name="mantle.order.OrderServices.approve#Order" in-map="context" out-map="context"/>
+            <service-call name="DonationPage.DonationPageServices.customApprove#Order" in-map="context" out-map="context"/>
 
             <service-call name="mantle.order.OrderServices.complete#OrderPart" in-map="context" out-map="context"/>
         </actions>
