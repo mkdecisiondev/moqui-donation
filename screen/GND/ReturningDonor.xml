@@ -8,7 +8,6 @@
   </transition>
 
   <widgets>
-    <link text="First time donor? Click here!" url="../FirstTimeDonor"/>
     <render-mode>
             <text type="html,vuet" location="component://GND/screen/GND/gnd-returning-donor.html"/>
         </render-mode>

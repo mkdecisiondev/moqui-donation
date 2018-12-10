@@ -33,6 +33,16 @@ sup{
     color: red;
 }
 
+footer{
+    background-color: #959595;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    text-align: center;
+}
+
 
 /* HEADER SECTION */
 
@@ -57,17 +67,38 @@ header{
 }
 
 .headerSecure{
-    background-image: url("gnd-secure-response.png");
-    background-position: left top;
+    background-image: url("lock.svg");
+    background-position: left center;
     background-repeat: no-repeat;
+    background-size: contain;
     color: #98a0b6;
-    display: block;
     font-family: 'Raleway', sans-serif;
     font-size: 15px;
-    height: 40px;
+    height: 60px;
     margin-right: 0.5em;
-    padding: 0 0 0 32px;
-    width: 100px;
+    padding: 0 0 0 20px;
+}
+
+
+/* SPLASH SECTION */
+
+.splashBanner{
+    background-image: url("GNDDonationSplash.png");
+    background-size: cover;
+    height: 266px;
+    background-repeat: no-repeat;
+    background-position-y: -50px;
+}
+
+#splashTitle{
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 4em;
+    text-align: center;
+    background: none;
+    color: white;
+    padding-top: 5.5%;
+    padding-left: 33%;
+    margin-top: 0;
 }
 
 
@@ -78,41 +109,43 @@ header{
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    margin-top: 0;
-    padding: 1.5em;
-    width: 100%;
-    background-color: #5DCEE7;
-    background-image: url("tile.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-blend-mode: multiply;
-    height: 116px;
-}
-
-#donateNow{
-    margin-top: 0;
-    font-weight: bold;
-    font-size: 3em;
-    margin-bottom: 0;
-    font-family: 'Noto Sans SC', sans-serif;
-    color: white;
+    margin-top: 5vh;
 }
 
 .subheader{
     font-family: 'Raleway', sans-serif;
-    font-size: 1.25em;
-    color: white;
-    margin-bottom: 1vh;
-    margin-top: 1vh;
+    font-size: 1.75em;
+    color: black;
+}
+
+#donateNow{
+    margin-top: -3vh;
+    font-weight: bold;
+    font-size: 2.5em;
+    margin-bottom: 5vh;
 }
 
 
 /* EMAIL SECTION */
 
+.hyperLink{
+    margin-bottom: 1vh;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    color: #459ABC;
+    margin-bottom: 1vh;
+}
+
+.hyperLink:hover{
+    color: #ED9757;
+    text-decoration: underline
+}
+
 .labelAndFieldHalf{
     width: 45%;
     margin: 0 auto;
-    margin-top: 4vh;
+    margin-top: 0;
 }
 .inputField{
     width: 100%;
@@ -135,8 +168,9 @@ input[type="email"], input[type="tel"] {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin-top: 4vh;
+    margin-top: 0;
     justify-content: center;
+    margin-bottom: 6vh;
 }
 
 .donationButtonsContainer{
@@ -277,4 +311,15 @@ input[type="email"], input[type="tel"] {
 
 #donateButton{
     text-align: center;
+}
+
+.badgeContainer{
+    text-align: center;
+}
+.stripeBadge{
+    width: 100px;
+}
+
+.secure100Badge{
+    height: 32px;
 }

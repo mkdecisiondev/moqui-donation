@@ -8,6 +8,12 @@
 
         <out-parameters>
             <parameter name="stripeCustomerId" required="true"/>
+            <!-- testing to add receipt info to EC -->
+            <parameter name="stripeLast4"/>
+            <parameter name="stripeCardBrand"/>
+            <parameter name="stripeTimeStamp"/>
+            <parameter name="stripeReceipt"/>
+            <!-- end code -->
         </out-parameters>
 
         <actions>
@@ -23,6 +29,15 @@
             <parameter name="DonationAmount" required="true"/>
             <parameter name="description" required="true"/>
         </in-parameters>
+
+        <!-- testing to add receipt info to EC -->
+        <out-parameters>
+            <parameter name="stripeLast4"/>
+            <parameter name="stripeCardBrand"/>
+            <parameter name="stripeTimeStamp"/>
+            <parameter name="stripeReceipt"/>
+        </out-parameters>
+        <!-- end code -->
     </service>
 
     <service verb="send" noun="ConfirmationEmail" type="java" location="com.mk.moqui.sendConfirmationEmail" method="sendEmail" authenticate="anonymous-all">
@@ -31,6 +46,12 @@
             <parameter name="firstName" required="true"/>
             <parameter name="lastName" required="true"/>
             <parameter name="emailAddress" required="true"/>
+            <!-- testing to add receipt info to EC -->
+            <parameter name="stripeLast4"/>
+            <parameter name="stripeCardBrand"/>
+            <parameter name="stripeTimeStamp"/>
+            <parameter name="stripeReceipt"/>
+            <!-- done -->
         </in-parameters>
     </service>
 

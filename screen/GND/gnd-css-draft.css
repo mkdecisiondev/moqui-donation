@@ -3,6 +3,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC:900|Raleway');
 
+/* Media queries at the bottom */
+
 /* General Styling */
 header{
     position: static;
@@ -75,37 +77,41 @@ sup{
 } */
 
 .headerSecure{
-    background-image: url("gnd-secure-response.png");
-    background-position: left top;
+    background-image: url("lock.svg");
+    background-position: left center;
     background-repeat: no-repeat;
+    background-size: contain;
     color: #98a0b6;
-    display: block;
     font-family: 'Raleway', sans-serif;
     font-size: 15px;
-    height: 40px;
+    height: 60px;
     margin-right: 0.5em;
-    padding: 0 0 0 32px;
-    width: 100px;
+    padding: 0 0 0 20px;
 }
 
 
 /* SPLASH SECTION */
 .splashBanner{
-    background-image: url("GNDDonationSplash.png");
+    background-image: url("donationSplash.png");
     background-size: cover;
-    height: 266px;
+    height: 37vh;
     background-repeat: no-repeat;
-    background-position-y: -50px;
+    /* background-position-y: -50px; */
+    /* background-attachment: fixed; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 33%;
 }
 
 #splashTitle{
     font-family: 'Noto Sans SC', sans-serif;
-    font-size: 4em;
+    font-size: 4.5em;
     text-align: center;
     background: none;
     color: white;
-    padding-top: 5.5%;
-    padding-left: 33%;
+    padding-top: 7.5%;
+    /* padding-left: 33%; */
     margin-top: 0;
 }
 
@@ -127,10 +133,23 @@ sup{
 }
 
 #donateNow{
-    margin-top: -3vh;
+    margin-top: 0;
     font-weight: bold;
     font-size: 2.5em;
-    margin-bottom: 6vh;
+    margin-bottom: 5vh;
+}
+
+.hyperLink{
+    margin-bottom: 1vh;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    color: #459ABC;
+}
+
+.hyperLink:hover{
+    color: #ED9757;
+    text-decoration: underline
 }
 
 #payment-form{
@@ -144,7 +163,7 @@ sup{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 50%;
+    width: 60%;
     justify-content: space-evenly;
 }
 
@@ -247,12 +266,19 @@ sup{
     color: white;
 } */
 
+.donationFrequencyButtonsContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 60%;
+    justify-content: space-evenly;
+}
+
 .donationFrequencyButtonsContainer input[type="radio"] {
     display: none;
 }
 
 .donationFrequencyButtonsContainer label {
-    display:inline-block;
     margin-top: 2vh;
     margin-bottom: 0;
     cursor: pointer;
@@ -295,6 +321,7 @@ sup{
     border-radius: 5px;
     background-color: #f7f7f7;
     border: 1px solid #999;
+    box-sizing: content-box;
 }
 
 input[type="text"], input[type="email"], input[type="tel"], input[type="number"] {
@@ -378,6 +405,66 @@ select{
 
 .secure100Badge{
     height: 32px;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 67.5em){
+    .splashBanner{ 
+        background-image: url("donationSplashSmall.png");
+        /* border: 2px solid red; */
+    }
+    
+    #splashTitle{
+        font-size: 3em;
+    }
+}
+
+@media only screen and (max-width: 47em){
+    .splashBanner{
+        background-image: url("donationSplashSmall.png");
+        padding-left: 0px;
+        /* border: 2px solid yellow; */
+    }
+    
+    #splashTitle{
+        font-size: 7vw;
+        text-align: right;
+        word-spacing: 1000px;
+        padding-right: 2%;
+        line-height: 1;
+    }
+
+    .labelAndFieldFull{
+       margin: 0 0 2.5%
+    }
+
+    .labelAndFieldHalf{
+        width: 100%;
+        margin: 0 0 2.5%
+    }
+
+    .labelAndFieldThird{
+        width: 100%;
+        margin: 0 0 2.5%
+    }
+
+    #cityField{
+       width: 100%; 
+    }
+
+    #stateField{
+        width: 100%;
+        margin: 0 0 2.5%
+    }
+
+    #zipField{
+        width: 100%;
+    }
+
+    .stripeForm{
+        margin: 0 0 2.5%;
+        width: 100%;
+    }
 }
 
 
