@@ -106,48 +106,36 @@ class GNDServiceTests extends Specification {
         test2OrderPart.partTotal.toString() == "200"
         test2OrderItem.itemTypeEnumId == "ItemDonation"
     }
-  
+
     def "Creates a Stripe Customer when donation is submitted" (){
-         when:
-         String firstName = "Ryan"
-         String lastName = "Higgins"
-         String emailAddress = "rhiggins32@gmail.com"
-         String stripeToken = "tok_visa"
-         String donationAmount = "100"
+        when:
+        String firstName = "Ryan"
+        String lastName = "Higgins"
+        String emailAddress = "rhiggins32@gmail.com"
+        String stripeToken = "tok_visa"
+        String donationAmount = "100"
         
-         Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.create#StripeCustomer").parameters([firstName: firstName, lastName: lastName, emailAddress: emailAddress, donationAmount: donationAmount, stripeToken: stripeToken]).call()
-         println(serviceCall);
+        Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.create#StripeCustomer").parameters([firstName: firstName, lastName: lastName, emailAddress: emailAddress, donationAmount: donationAmount, stripeToken: stripeToken]).call()
+        println(serviceCall);
 
-         then: 
-
-         serviceCall.stripeCustomerId != null;
+        then: 
+        serviceCall.stripeCustomerId != null;
     }
 
     
     def "Charges correct Stripe Customer when donation is submitted" (){
-         when:
-         String firstName = "Ryan"
-         String lastName = "Higgins"
-         String emailAddress = "rhiggins32@gmail.com"
-         String stripeCustomerId = "cus_E8CuqtHMk4l8hH"
-         String donationAmount = "100"
+        when:
+        String firstName = "Ryan"
+        String lastName = "Higgins"
+        String emailAddress = "rhiggins32@gmail.com"
+        String stripeCustomerId = "cus_E8CuqtHMk4l8hH"
+        String donationAmount = "100"
         
-         Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.charge#StripeCustomer").parameters([firstName: firstName, lastName: lastName, donationAmount: donationAmount, description: stripeCustomerId ]).call()
-         println(serviceCall);
+        Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.charge#StripeCustomer").parameters([firstName: firstName, lastName: lastName, donationAmount: donationAmount, description: stripeCustomerId ]).call()
+        println(serviceCall);
 
-         then: 
-
-         serviceCall.paid != null;
-     }
+        then: 
+        serviceCall.paid != null;
+    }
 
 }
-        
-        
-        
-
-        //**Finalized Data Document for GND Donation Reports 
-        
-        
-        //**Error handling for Stripe CC decline (page or message?)
-                //please try again or use a different payment method?
-        
