@@ -26,8 +26,7 @@ class GNDServiceTests extends Specification {
 
     def setup() {
         ec.user.loginUser("john.doe", "moqui")
-        // we still have to disableAuthz even though a user is logged in because this user does not have permission to
-        //     call this service directly (normally is called through a screen with inherited permission)
+        // we still have to disableAuthz even though a user is logged in because this user does not have permission to call this service directly (normally is called through a screen with inherited permission)
         ec.artifactExecution.disableAuthz()
         ec.transaction.begin(null)
     }
@@ -37,81 +36,75 @@ class GNDServiceTests extends Specification {
         ec.artifactExecution.enableAuthz()
         ec.user.logoutUser()
     }
-    // def "Create UUID generates random code"(){
-    //     when:
-    //     Map serviceCall= ec.service.sync().name("SEStest.SEStestServices.create#id").call()
-    //     println(serviceCall);
 
-    //     then:
-    //     println("####################### TESTING RESULTS ##################")
-    //     serviceCall.verifyCode.size() == 36 
-       
-    // }
     def "Sends an email to user when service is called " (){
         when:
         String firstName = "Young"
         String lastName = "Hsu"
         String emailAddress = "justin1020@gmail.com"
-        String donationAmount = "1000"
+        String donationAmount = "100"
         
         Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.send#ConfirmationEmail").parameters([firstName: firstName, lastName: lastName, emailAddress: emailAddress, donationAmount: donationAmount]).call()
         println(serviceCall);
 
         then: 
-
         serviceCall.messageId != null;
-
-        
-        
         }
 
-        //TO DO : 
+    def "Creates an order with the OrderItem 'ItemDonationMonthly' when a user decides to set up monthly donation plan" (){
+        when:
+        String emailAddress = "test@test.com"
+        String donationAmount = "100"
+        String donationFrequency = "monthly-donation"
+        String firstName = "test_firstName"
+        String lastName = "test_lastName"
+        String contactNumber = "1231231234"
+        String address1 = "Te St."
+        String city = "Test"
+        String stateProvinceGeoId = "USA_CA"
+        String postalCode = "92122"
+        String stripeToken = "tok_visa"
+        
+        ec.service.sync().name("DonationPage.DonationPageServices.check#DonorEmailAndFrequency").parameters([emailAddress: emailAddress, donationAmount: donationAmount, donationFrequency: donationFrequency, firstName: firstName, lastName: lastName, contactNumber: contactNumber, address1: address1, city: city, stateProvinceGeoId: stateProvinceGeoId, postalCode: postalCode, stripeToken: stripeToken]).call()
 
-        //***Create a Stripe Customer
-            //create#StripeCustomer (email address, stripe token)
-                //Then stripeCustomerId != null 
+        EntityValue testContactMech = ec.entity.find("mantle.party.contact.ContactMech").condition( [ "infoString" : emailAddress ] ).one()
+        EntityValue testPartyContactMech = ec.entity.find("mantle.party.contact.PartyContactMech").condition( [ "contactMechId" : testContactMech.contactMechId ] ).one()
+        EntityValue testOrderPart = ec.entity.find("mantle.order.OrderPart").condition( [ "customerPartyId" : testPartyContactMech.partyId ] ).one()
+        EntityValue testOrderItem = ec.entity.find("mantle.order.OrderItem").condition( [ "orderId" : testOrderPart.orderId ] ).one()
 
-        //***Charge Customer 
-             //charge#StripeCustomer (donationAmount, description)
-                    //Then Charge.result != null 
+        then: 
+        testOrderPart.statusId == "OrderApproved"
+        testOrderPart.partTotal.toString() == donationAmount
+        testOrderItem.itemTypeEnumId == "ItemDonationMonthly"
+    }
 
-        
-        //**First Time Donor --> Create Monthly Donation 
-            //create#OrderForMonthlyDonationPlan 
-                //Then: ItemTypeEnumID = "ItemDonationMonthly"
-                //      OrderStatusId = Approved (not complete)
-                //      OrderPartTotal = donationAmount 
-               //       customerPartyId = partyId
-               //       stripeCustomerId = description 
+    def "process#MonthlyDonation will create donations for ALL users who've set up a monthly donation plan" (){
+        when:
 
-        
-        //Returning donor sets up Monthly Donation 
-            //check#donorEmailAndFrequency (email, donationFrequency, _____party.Person info____)
-           //Then queryForEmail != null 
-                //stripeCustomerId = description
-                //orderPartTotal = donationAmount
-                //orderStatusId = approved
-                //customerPartyId = partyId 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-        
-        
-        //*** Returning one-time donor charges customer even if clicked from first time donation 
-                //#check#DonorEmailAndFrequency (email, donationFrequency, ___party.Person info___ )
-                    //Then - stripeCustomerId = stripeCustomerId
-                            //OrderPartyID = partyId
-                            //OrderPart = complete 
+        ec.service.sync().name("DonationPage.DonationPageServices.check#DonorEmailAndFrequency").parameters([emailAddress: "test@test.com", donationAmount: "100", donationFrequency: "monthly-donation", firstName: "test_firstName", lastName: "test_lastName", contactNumber: "1231231234", address1: "Te St.", city: "Test", stateProvinceGeoId: "USA_CA", postalCode: "92122", stripeToken: "tok_visa"]).call()
 
+        ec.service.sync().name("DonationPage.DonationPageServices.check#DonorEmailAndFrequency").parameters([emailAddress: "test2@test.com", donationAmount: "200", donationFrequency: "monthly-donation", firstName: "test2_firstName", lastName: "test2_lastName", contactNumber: "1231231234", address1: "2 Te St.", city: "Test2", stateProvinceGeoId: "USA_CA", postalCode: "92122", stripeToken: "tok_visa"]).call()
 
+        ec.service.sync().name("DonationPage.DonationPageServices.process#MonthlyDonation").call()
 
-        //***Test the CRON Service for processing Monthly Donations
-            //create a monthly donor named CRON and check that his order ID/party Id was processed at a specific time today  
-        
-        
-        //**CustomerId/Email stored from Stripe Object into Moqui
-            //create#StripeCustomer 
-                //Then: mantle.Party.Person.description = stripeCustomerId  
-        
-        
+        EntityValue testContactMech = ec.entity.find("mantle.party.contact.ContactMech").condition( [ "infoString" : "test@test.com" ] ).one()
+        EntityValue testPartyContactMech = ec.entity.find("mantle.party.contact.PartyContactMech").condition( [ "contactMechId" : testContactMech.contactMechId ] ).one()
+        EntityValue testOrderPart = ec.entity.find("mantle.order.OrderPart").condition( [ "customerPartyId" : testPartyContactMech.partyId, "statusId" : "OrderCompleted"] ).one()
+        EntityValue testOrderItem = ec.entity.find("mantle.order.OrderItem").condition( [ "orderId" : testOrderPart.orderId ] ).one()
+
+        EntityValue test2ContactMech = ec.entity.find("mantle.party.contact.ContactMech").condition( [ "infoString" : "test2@test.com" ] ).one()
+        EntityValue test2PartyContactMech = ec.entity.find("mantle.party.contact.PartyContactMech").condition( [ "contactMechId" : test2ContactMech.contactMechId ] ).one()
+        EntityValue test2OrderPart = ec.entity.find("mantle.order.OrderPart").condition( [ "customerPartyId" : test2PartyContactMech.partyId, "statusId" : "OrderCompleted"] ).one()
+        EntityValue test2OrderItem = ec.entity.find("mantle.order.OrderItem").condition( [ "orderId" : test2OrderPart.orderId ] ).one()
+
+        then: 
+        testOrderPart.statusId=="OrderCompleted"
+        testOrderPart.partTotal.toString() == "100"
+        testOrderItem.itemTypeEnumId == "ItemDonation"
+        test2OrderPart.partTotal.toString() == "200"
+        test2OrderItem.itemTypeEnumId == "ItemDonation"
+    }
+
         //**Finalized Data Document for GND Donation Reports 
         
         
