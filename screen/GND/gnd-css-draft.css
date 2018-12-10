@@ -419,7 +419,7 @@ select{
     }
 }
 
-@media only screen and (max-width: 47em){
+@media only screen and (max-width: 47.5em){
     .splashBanner{
         background-image: url("donationSplashSmall.png");
         padding-left: 0px;
