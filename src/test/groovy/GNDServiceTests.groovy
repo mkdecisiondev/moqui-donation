@@ -37,62 +37,82 @@ class GNDServiceTests extends Specification {
         ec.artifactExecution.enableAuthz()
         ec.user.logoutUser()
     }
-    // def "Create UUID generates random code"(){
+    
+    //##COMPLETE
+    //def "Sends an email to user when service is called " (){
     //     when:
-    //     Map serviceCall= ec.service.sync().name("SEStest.SEStestServices.create#id").call()
+    //     String firstName = "Ryan"
+    //     String lastName = "Higgins"
+    //     String emailAddress = "rhiggins32@gmail.com"
+    //     String donationAmount = "100"
+        
+    //     Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.send#ConfirmationEmail").parameters([firstName: firstName, lastName: lastName, emailAddress: emailAddress, donationAmount: donationAmount]).call()
     //     println(serviceCall);
 
-    //     then:
-    //     println("####################### TESTING RESULTS ##################")
-    //     serviceCall.verifyCode.size() == 36 
-       
+    //     then: 
+
+    //     serviceCall.messageId != null;
     // }
-    def "Sends an email to user when service is called " (){
-        when:
-        String firstName = "Ryan"
-        String lastName = "Higgins"
-        String emailAddress = "rhiggins32@gmail.com"
-        String donationAmount = "100"
+    //####COMPLETE
+    // def "Creates a Stripe Customer when donation is submitted" (){
+    //     when:
+    //     String firstName = "Ryan"
+    //     String lastName = "Higgins"
+    //     String emailAddress = "rhiggins32@gmail.com"
+    //     String stripeToken = "tok_visa"
+    //     String donationAmount = "100"
         
-        Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.send#ConfirmationEmail").parameters([firstName: firstName, lastName: lastName, emailAddress: emailAddress, donationAmount: donationAmount]).call()
-        println(serviceCall);
+    //     Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.create#StripeCustomer").parameters([firstName: firstName, lastName: lastName, emailAddress: emailAddress, donationAmount: donationAmount, stripeToken: stripeToken]).call()
+    //     println(serviceCall);
 
-        then: 
+    //     then: 
 
-        serviceCall.messageId != null;
+    //     serviceCall.stripeCustomerId != null;
+    // }
 
+    // //###COMPLETE
+
+    //  def "Charges correct Stripe Customer when donation is submitted" (){
+    //     when:
+    //     String firstName = "Ryan"
+    //     String lastName = "Higgins"
+    //     String emailAddress = "rhiggins32@gmail.com"
+    //     String stripeCustomerId = "cus_E8CuqtHMk4l8hH"
+    //     String donationAmount = "100"
         
-        
-        }
+    //     Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.charge#StripeCustomer").parameters([firstName: firstName, lastName: lastName, donationAmount: donationAmount, description: stripeCustomerId ]).call()
+    //     println(serviceCall);
+
+    //     then: 
+
+    //     serviceCall.paid != null;
+    // }
+
+}
+
+
+
 
         //TO DO : 
 
-        //***Create a Stripe Customer
+        //***Create a Stripe Customer #####COMPLETED
             //create#StripeCustomer (email address, stripe token)
                 //Then stripeCustomerId != null 
+                
 
         //***Charge Customer 
              //charge#StripeCustomer (donationAmount, description)
                     //Then Charge.result != null 
 
         
-        //**First Time Donor --> Create Monthly Donation 
+        //****Create Monthly Donation 
             //create#OrderForMonthlyDonationPlan 
                 //Then: ItemTypeEnumID = "ItemDonationMonthly"
                 //      OrderStatusId = Approved (not complete)
                 //      OrderPartTotal = donationAmount 
                //       customerPartyId = partyId
                //       stripeCustomerId = description 
-
-        
-        //Returning donor sets up Monthly Donation 
-            //check#donorEmailAndFrequency (email, donationFrequency, _____party.Person info____)
-           //Then queryForEmail != null 
-                //stripeCustomerId = description
-                //orderPartTotal = donationAmount
-                //orderStatusId = approved
-                //customerPartyId = partyId 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                                                                                                                                                                                     
         
         
         //*** Returning one-time donor charges customer even if clicked from first time donation 
@@ -107,10 +127,6 @@ class GNDServiceTests extends Specification {
             //create a monthly donor named CRON and check that his order ID/party Id was processed at a specific time today  
         
         
-        //**CustomerId/Email stored from Stripe Object into Moqui
-            //create#StripeCustomer 
-                //Then: mantle.Party.Person.description = stripeCustomerId  
-        
         
         //**Finalized Data Document for GND Donation Reports 
         
@@ -119,4 +135,3 @@ class GNDServiceTests extends Specification {
                 //please try again or use a different payment method?
         
 
-}

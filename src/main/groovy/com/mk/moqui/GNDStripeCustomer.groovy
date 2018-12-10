@@ -43,6 +43,6 @@ class GNDStripeCustomer {
     customerParams.put("currency", "usd");
     customerParams.put("customer", ec.context.description);
     Charge charge = Charge.create(customerParams);
-    return
+    return [paid: charge.paid]
   }
 }
