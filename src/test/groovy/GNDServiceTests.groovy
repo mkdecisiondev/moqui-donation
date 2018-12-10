@@ -68,12 +68,55 @@ class GNDServiceTests extends Specification {
         //TO DO : 
 
         //***Create a Stripe Customer
-        //***Charge Customer
-        //*** Returning donor charges customer even if clicked from first time donation 
-        //***Test the CRON Service for processing Monthly Donations 
-        //**CustomerId/Email stored from Stripe Object into Moqui 
+            //create#StripeCustomer (email address, stripe token)
+                //Then stripeCustomerId != null 
+
+        //***Charge Customer 
+             //charge#StripeCustomer (donationAmount, description)
+                    //Then Charge.result != null 
+
+        
+        //**First Time Donor --> Create Monthly Donation 
+            //create#OrderForMonthlyDonationPlan 
+                //Then: ItemTypeEnumID = "ItemDonationMonthly"
+                //      OrderStatusId = Approved (not complete)
+                //      OrderPartTotal = donationAmount 
+               //       customerPartyId = partyId
+               //       stripeCustomerId = description 
+
+        
+        //Returning donor sets up Monthly Donation 
+            //check#donorEmailAndFrequency (email, donationFrequency, _____party.Person info____)
+           //Then queryForEmail != null 
+                //stripeCustomerId = description
+                //orderPartTotal = donationAmount
+                //orderStatusId = approved
+                //customerPartyId = partyId 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+        
+        
+        //*** Returning one-time donor charges customer even if clicked from first time donation 
+                //#check#DonorEmailAndFrequency (email, donationFrequency, ___party.Person info___ )
+                    //Then - stripeCustomerId = stripeCustomerId
+                            //OrderPartyID = partyId
+                            //OrderPart = complete 
+
+
+
+        //***Test the CRON Service for processing Monthly Donations
+            //create a monthly donor named CRON and check that his order ID/party Id was processed at a specific time today  
+        
+        
+        //**CustomerId/Email stored from Stripe Object into Moqui
+            //create#StripeCustomer 
+                //Then: mantle.Party.Person.description = stripeCustomerId  
+        
+        
         //**Finalized Data Document for GND Donation Reports 
+        
+        
         //**Error handling for Stripe CC decline (page or message?)
+                //please try again or use a different payment method?
         
 
 }
