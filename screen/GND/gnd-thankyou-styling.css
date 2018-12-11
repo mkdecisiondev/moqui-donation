@@ -70,17 +70,16 @@ header{
 }
 
 .headerSecure{
-    background-image: url("gnd-secure-response.png");
-    background-position: left top;
+    background-image: url("lock.svg");
+    background-position: left center;
     background-repeat: no-repeat;
+    background-size: contain;
     color: #98a0b6;
-    display: block;
     font-family: 'Raleway', sans-serif;
     font-size: 15px;
-    height: 40px;
+    height: 60px;
     margin-right: 0.5em;
-    padding: 0 0 0 32px;
-    width: 100px;
+    padding: 0 0 0 20px;
 }
 
 /* LINKS */
@@ -102,3 +101,71 @@ footer{
     padding-bottom: 25px;
     text-align: center;
 }
+
+
+/* MEDIA QUERIES */
+
+@media (max-aspect-ratio: 4/3){
+
+    /* Added HTML and Body Styling to make footer sticky at the bottom with proper margins */
+
+    html{
+        height:100%
+    }
+
+    body {
+        min-height: 100%;
+        padding: 0;
+        margin: 8px;
+        position: relative;
+    }
+
+    h1{
+        font-size: 2.5em;
+        /* color: blue; */
+    }
+
+    h3{
+        font-size: 1.25em;
+    }
+
+    p{
+        font-size: 0.75em;
+    }
+
+    .linksContainer{
+        font-size: .75em;
+    }
+
+    footer{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+   
+        margin-bottom: 16px;
+    }
+}
+
+@media only screen and (max-width: 47.5em){
+    h1{
+        font-size: 2.5em;
+        /* color: blue; */
+    }
+
+    h3{
+        font-size: 1.25em;
+    }
+
+    p{
+        font-size: 0.75em;
+    }
+
+    .linksContainer{
+        font-size: .75em;
+    }
+
+}
+
+
+
+
