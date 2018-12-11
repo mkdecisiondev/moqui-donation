@@ -36,6 +36,7 @@
             <parameter name="stripeCardBrand"/>
             <parameter name="stripeTimeStamp"/>
             <parameter name="stripeReceipt"/>
+            <parameter name="stripePaid"/>
         </out-parameters>
         <!-- end code -->
     </service>
