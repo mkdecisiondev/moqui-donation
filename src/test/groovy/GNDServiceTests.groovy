@@ -125,17 +125,15 @@ class GNDServiceTests extends Specification {
     
     def "Charges correct Stripe Customer when donation is submitted" (){
         when:
-        String firstName = "Ryan"
-        String lastName = "Higgins"
-        String emailAddress = "rhiggins32@gmail.com"
-        String stripeCustomerId = "cus_E8CuqtHMk4l8hH"
-        String donationAmount = "100"
+        Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.create#StripeCustomer").parameters([firstName: "test5_firstName", lastName: "test5_lastName", emailAddress: "test5@test.com",stripeToken: "tok_visa"]).call()
         
-        Map serviceCall = ec.service.sync().name("DonationPage.DonationPageServices.charge#StripeCustomer").parameters([firstName: firstName, lastName: lastName, donationAmount: donationAmount, description: stripeCustomerId ]).call()
-        println(serviceCall);
+        Map serviceCall2 = ec.service.sync().name("DonationPage.DonationPageServices.charge#StripeCustomer").parameters([donationAmount: "100", description: serviceCall.stripeCustomerId ]).call()
+        println(serviceCall2);
+
+        
 
         then: 
-        serviceCall.paid != null;
+        serviceCall2.paid != null;
     }
 
 }

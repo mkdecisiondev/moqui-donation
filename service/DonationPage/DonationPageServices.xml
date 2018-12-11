@@ -278,7 +278,7 @@
     </service>
 
     <service verb="process" noun="MonthlyDonation" authenticate="anonymous-all">
-        <!-- This service runs handle#donation for every single person in the database who opted into a monthly-donation plan. It'll pull the amount each customer committed to and create a donation (including charge them through Stripe, sending a confirmation email, and posting donation data into Moqui) on their behalf. -->
+        <!-- This service runs handle#donation for every single person in the database who opted into a monthly-donation plan. It'll pull the amount each customer committed to and create a donation (including charging them through Stripe, sending a confirmation email, and posting donation data into Moqui) on their behalf. -->
         <in-parameters>
         </in-parameters>
 
