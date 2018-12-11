@@ -35,7 +35,7 @@ class GNDStripeCustomer {
     Map<String, Object> customerParams = new HashMap<>();
 
 
-    String amount = ec.context.DonationAmount.toString()
+    String amount = ec.context.donationAmount.toString()
     // println("@!@!@!@!@@!@!@!DONATION AMOUNT STRING IS ${amount}")
 
     Double result = Double.parseDouble(amount)*100
@@ -58,6 +58,7 @@ class GNDStripeCustomer {
     receiptInfoMap.put("stripeCardBrand", charge.source.brand);
     receiptInfoMap.put("stripeTimeStamp", formattedDate);
     receiptInfoMap.put("stripeReceipt", charge.receiptNumber);
+    receiptInfoMap.put("stripePaid", charge.paid);
     // receiptInfoMap.put("stripeDonationAmount", );
 
     println("############# CHARGE INFO:##########");

@@ -17,7 +17,7 @@ public class sendConfirmationEmail {
   
   // Replace sender@example.com with your "From" address.
   // This address must be verified with Amazon SES.
-  static final String FROM = "jerome.shep@gmail.com";
+  static final String FROM = "justin1020@gmail.com";
 
   // Replace recipient@example.com with a "To" address. If your account
   // is still in the sandbox, this address must be verified.
@@ -52,7 +52,7 @@ public class sendConfirmationEmail {
         <h1 style="padding: 20px 20px ; font-family:'Noto Sans SC', sans-serif; font-size:26px; color:white; overflow-wrap:break-word; hypens:auto">
                 ${ec.context.firstName}, you donated 
                 <span style="display:block;"> 
-                    \$${ec.context.DonationAmount}! 
+                    \$${ec.context.donationAmount}! 
                 </span>
         </h1>
     </div>
@@ -64,7 +64,7 @@ public class sendConfirmationEmail {
 
     <div style="text-align:left; padding-left: 20px; font-family: 'Raleway', sans-serif;font-size:16px;">
         <p>Date: ${ec.context.stripeTimeStamp} </p>
-        <p>Amount: \$${ec.context.DonationAmount} </p>
+        <p>Amount: \$${ec.context.donationAmount} </p>
         <p>Receipt No.: ${ec.context.stripeReceipt}</p>
         <p>${ec.context.stripeCardBrand} xxx${ec.context.stripeLast4}</p>
     </div>

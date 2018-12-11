@@ -133,7 +133,7 @@ class GNDServiceTests extends Specification {
         
 
         then: 
-        serviceCall2.paid != null;
+        serviceCall2.stripePaid != null;
     }
 
 }
