@@ -34,8 +34,10 @@ class GNDStripeCustomer {
     
     Map<String, Object> customerParams = new HashMap<>();
 
+
     String amount = ec.context.DonationAmount.toString()
     // println("@!@!@!@!@@!@!@!DONATION AMOUNT STRING IS ${amount}")
+
     Double result = Double.parseDouble(amount)*100
     Integer integerAmount = Math.round(result)
     String processedAmount = Integer.toString(integerAmount)
@@ -44,7 +46,6 @@ class GNDStripeCustomer {
     customerParams.put("currency", "usd");
     customerParams.put("customer", ec.context.description);
     Charge charge = Charge.create(customerParams);
-
 
     //Added code below to add data needed for email receipt to the execution context - data will be used with sendConfirmationEmail.groovy 
 
@@ -73,5 +74,6 @@ class GNDStripeCustomer {
     println("RECEIPT: ${receiptInfoMap.stripeReceipt}")
 
     return receiptInfoMap
+
   }
 }
