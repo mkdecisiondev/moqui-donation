@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="gnd-css-draft.css?version=62" />
+    <link rel="stylesheet" type="text/css" media="screen" href="gnd-css-draft.css?version=69" />
     <script src="https://js.stripe.com/v3/"></script>
-    <script src="handleGND.js?version=9"></script>
+    <script src="handleGND.js?version=36"></script>
 </head>
 <body>
     
@@ -46,37 +46,37 @@
             
             
                     <div class="donationButtonsContainer">
-                        <input type="radio" id="amountBox1" name="donationAmount" value="31">
+                        <input required type="radio" id="amountBox1" name="donationAmount" value="31">
                         <label for="amountBox1"> $31 </label>
 
-                        <input type="radio" id="amountBox2" name="donationAmount" value="51">
+                        <input required type="radio" id="amountBox2" name="donationAmount" value="51">
                         <label for="amountBox2"> $51 </label>
 
-                        <input type="radio" id="amountBox3" name="donationAmount" value="101">
+                        <input required type="radio" id="amountBox3" name="donationAmount" value="101">
                         <label for="amountBox3"> $101 </label>
 
-                        <input type="radio" id="amountBox4" name="donationAmount" value="251">
+                        <input required type="radio" id="amountBox4" name="donationAmount" value="251">
                         <label for="amountBox4"> $251 </label>
 
-                        <input type="radio" id="amountBox5" name="donationAmount" value="501">
+                        <input required type="radio" id="amountBox5" name="donationAmount" value="501">
                         <label for="amountBox5"> $501 </label>
 
-                        <input type="radio" id="amountBox6" name="donationAmount" value="1001">
+                        <input required type="radio" id="amountBox6" name="donationAmount" value="1001">
                         <label for="amountBox6"> $1,001 </label>
 
-                        <input type="radio" id="amountBox7" name="donationAmount" value="2001">
+                        <input required type="radio" id="amountBox7" name="donationAmount" value="2001">
                         <label for="amountBox7"> $2,001 </label>
 
-                        <input type="radio" id="amountBox8" name="donationAmount" value="5001">
+                        <input required type="radio" id="amountBox8" name="donationAmount" value="5001">
                         <label for="amountBox8"> $5,001 </label>
 
                         <div class="otherDonationContainer">
                             <span class="otherRadioAndLabel">
-                                <input type="radio" id="otherAmountRadio"
+                                <input required type="radio" id="otherAmountRadio"
                                 name="donationAmount" value="">
                                 <label for="otherAmountRadio"> $ </label>
                             </span>
-                            <input type="tel" id="otherAmtNumberInput" name="amount"  placeholder="Other" maxlength="7" pattern="\d+(\.\d{2})?" onclick="checkOtherRadio()" onchange="setOtherAmount()" data-value-missing="Please enter an amount" data-pattern-mismatch="Please enter numbers as whole dollars or dollars and cents (2 decimals)"> 
+                            <input type="tel" id="otherAmtNumberInput" name="amount"  placeholder="Other" maxlength="7" pattern="\d+(\.\d{2})?" onclick="checkOtherRadio()" onchange="setOtherAmount()" title="Please enter numbers as whole dollars or dollars and cents (2 decimals)"> 
                         </div>
                     </div> 
                 
@@ -84,7 +84,6 @@
             </section>
 
             <section class="billingAndCardSection">
-                <!-- <div class="inputFormContainer"></div> -->
 
                     <legend>Billing Information</legend>
             
@@ -93,44 +92,43 @@
                             <div class="labelAndFieldHalf" >
                                 <label for="firstName">First Name<sup>*</sup></label>
                                 <br/>
-                                <input type="text" id="firstName" name="firstName" pattern=".{2,}" class="inputField" required data-value-missing="Please enter your First Name" data-pattern-mismatch="Please re-enter your First Name" >
+                                <input required type="text" id="firstName" name="firstName" class="inputField" pattern=".{1,}" onblur="addValidationErrorStyling(event)" oninput="addValidationErrorStyling(event)">
                             </div>
             
                             <div class="labelAndFieldHalf" >
                                 <label for="lastName">Last Name<sup>*</sup></label>
                                 <br/>
-                                <input type="text" id="lastName" name="lastName" class="inputField" pattern=".{2,}" required data-value-missing="Please enter your Last Name" data-pattern-mismatch="Please re-enter your Last Name">
+                                <input required type="text" id="lastName" name="lastName" class="inputField" pattern=".{1,}" onblur="addValidationErrorStyling(event)" oninput="addValidationErrorStyling(event)">
                             </div>
             
                             <div class="labelAndFieldHalf">
                                 <label for="emailAddress">Email Address<sup>*</sup></label>
                                 <br/>
-                                <input type="email" id="emailAddress" name="emailAddress" size="30" class="inputField" required data-value-missing="Please enter your Email Address" data-pattern-mismatch="Please enter a valid Email Address">
+                                <input required type="email" id="emailAddress" name="emailAddress" class="inputField" onblur="addValidationErrorStyling(event)" oninput="addValidationErrorStyling(event)">
                             </div>
             
                             <div class="labelAndFieldHalf">
                                 <label for="contactNumber">Phone Number<sup>*</sup></label>
                                 <br/>
-                                <input id="contactNumber" name="contactNumber" class="inputField" type="tel" placEholder="XXXXXXXXXX" required pattern="\d{3}[\-]{0,1}\d{3}[\-]{0,1}\d{4}" data-value-missing="Please enter 10-digit Phone Number" data-pattern-mismatch="Please enter 10-digit Phone Number">
+                                <input required id="contactNumber" name="contactNumber" class="inputField" type="tel" placeholder="XXXXXXXXXX" pattern="^([0-9]{10})$" title="Digits only - no dashes, spaces, or parenthesis" onblur="addValidationErrorStyling(event)" oninput="addValidationErrorStyling(event)">
                             </div>
             
                             <div class="labelAndFieldFull">
                                 <label for="address1">Street Address<sup>*</sup></label>
                                 <br/>
-                                <input type="text" id="address1" name="address1" size="30" class="inputField" required pattern=".{3,}" data-value-missing="Please enter your Address" data-pattern-mismatch="Please enter a valid Address">
+                                <input required type="text" id="address1" name="address1" class="inputField" pattern=".{1,}" onblur="addValidationErrorStyling(event)" oninput="addValidationErrorStyling(event)">
                             </div>
 
                             <div class="labelAndFieldThird" id="cityField">
-                                    <label for="city">City<sup>*</sup></label>
-                                    <br/>
-                                    <input type="text" class="inputField" id="city" name="city" required pattern=".{2,}" data-value-missing="Please enter your City" data-pattern-mismatch="Please enter a valid City">
+                                <label for="city">City<sup>*</sup></label>
+                                <br/>
+                                <input required type="text" id="city" name="city" class="inputField" pattern="^\p{Lu}\p{L}*(?:[\s-]\p{Lu}\p{L}*)*$" onblur="addValidationErrorStyling(event)" oninput="addValidationErrorStyling(event)">
                             </div>
             
                             <div class="labelAndFieldThird" id="stateField">
                                 <label for="address_state">State<sup>*</sup></label>
                                 <br/>
-                                <select class="inputField" id="address_state"  name="stateProvinceGeoId" required
-                                data-value-missing="Please select your State">
+                                <select required class="inputField" id="address_state"  name="stateProvinceGeoId" onblur="addValidationErrorStyling(event)" oninput="addValidationErrorStyling(event)">
                                 <option class="blank label"></option>
                                 <option value="USA_AL" class="state">Alabama</option>
                                 <option value="USA_AK" class="state">Alaska</option>
@@ -198,7 +196,7 @@
                             <div class="labelAndFieldThird" id="zipField">
                                 <label for="postalCode">Zip Code<sup>*</sup></label>
                                 <br/>
-                                <input class="inputField" id="postalCode" name="postalCode" type="tel" pattern="[0-9]{5}" required data-value-missing="Please enter your ZIP Code" data-pattern-mismatch="Please enter a valid ZIP Code">
+                                <input required class="inputField" id="postalCode" name="postalCode" type="tel" pattern="^([0-9]{5})$" title="5 digit zip only" onblur="addValidationErrorStyling(event)" oninput="addValidationErrorStyling(event)">
                             </div>
 
                         </div>
@@ -206,15 +204,7 @@
                         <br>
                         <br>
             
-                        <!-- <legend>Donation Amount</legend>
-                        <div class="labelAndField">
-                            <label for="donationAmount">How much would you like to donate today?</label>
-                            <input type="text" id="donationAmount" name="donationAmount" required data-value-missing="Please enter an amount">
-                        </div> -->
-            
                     <legend>Card Information</legend>
-
-                   
 
                     <div class="stripeContainer">
 

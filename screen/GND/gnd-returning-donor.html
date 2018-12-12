@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="gnd-returning-donor-styling.css?version=34" />
-    <script src="handleGND.js?version=3"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="gnd-returning-donor-styling.css?version=35" />
+    <script src="handleGND.js?version=4"></script>
 
 </head>
 <body>
@@ -90,7 +90,7 @@
                         <div class="labelAndFieldFull">
                             <label for="emailAddress">Email Address<sup>*</sup></label>
                             <br/>
-                            <input type="email" id="emailAddress" name="emailAddress" size="30" class="inputField" required data-value-missing="Please enter your Email Address" data-pattern-mismatch="Please enter a valid Email Address">
+                            <input required type="email" id="emailAddress" name="emailAddress" class="inputField" title="Please enter a valid Email Address" onblur="addValidationErrorStyling(event)" oninput="addValidationErrorStyling(event)">
                         </div>
                     </div>
 
