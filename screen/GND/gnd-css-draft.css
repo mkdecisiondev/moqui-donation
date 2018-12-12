@@ -164,7 +164,7 @@ sup{
 }
 
 .donationButtonsContainer input[type="radio"] {
-    display: none;
+    opacity: 0;
 }
 
 .donationButtonsContainer input[type="number"] {
@@ -223,7 +223,7 @@ sup{
 }
 
 .otherDonationContainer input[type="radio"]{
-    display: none;
+    opacity: 0;
 }
 
 .otherDonationContainer label{
@@ -266,7 +266,8 @@ sup{
 }
 
 .donationFrequencyButtonsContainer input[type="radio"] {
-    display: none;
+    opacity: 0;
+    margin-right: -11%;
 }
 
 .donationFrequencyButtonsContainer label {
@@ -321,14 +322,16 @@ sup{
     cursor: text;
     border-radius: 5px;
     box-sizing: content-box;
-
-    border: 1px solid #999;
-    background-color: rgba(76, 175, 80, .10);
-    border-bottom: solid #4caf50 5px;
     background-image: url("check.svg");
     background-repeat: no-repeat;
     background-position-y: center;
-    background-position-x: 98%;
+    background-position-x: calc(100% - 10px);
+    /* border: 1px solid #999;
+    background-color: rgba(76, 175, 80, .10);
+    border-bottom: solid #4caf50 5px; */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 1);
+    border: 1px solid rgba(76, 175, 80, 1);
+    background-color: rgba(76, 175, 80, .05);
 }
 
 .inputFieldInvalid {
@@ -337,14 +340,16 @@ sup{
     cursor: text;
     border-radius: 5px;
     box-sizing: content-box;
-
-    border: 1px solid #999;
-    background-color: rgba(255, 61, 0, .10);
-    border-bottom: solid #ff3d00 5px;
     background-image: url("x.svg");
     background-repeat: no-repeat;
     background-position-y: center;
-    background-position-x: 98%;
+    background-position-x: calc(100% - 10px);
+    /* border: 1px solid #999;
+    background-color: rgba(255, 61, 0, .10);
+    border-bottom: solid #ff3d00 5px; */
+    box-shadow: 0 0 5px rgba(255, 61, 0, 1);
+    border: 1px solid rgba(255, 61, 0, 1);
+    background-color: rgba(255, 61, 0, .05);
 }
 
 
@@ -418,6 +423,12 @@ select{
 
 #donateButton{
     text-align: center;
+}
+
+#card-errors{
+    color: rgba(255, 61, 0, 1);
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
 }
 
 .badgeContainer{
