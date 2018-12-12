@@ -315,8 +315,7 @@ sup{
     box-sizing: content-box;
 }
 
-/* NOTE: REMEMBER TO REMOVE THE INPUTFIELD:VALID IF IT IS NOT WORKING */
-.inputFieldValid, inputField:valid{
+.inputFieldValid {
     width: 100%;
     height: 3em;
     cursor: text;
@@ -332,7 +331,7 @@ sup{
     background-position-x: 98%;
 }
 
-.inputFieldInvalid, inputField:invalid{
+.inputFieldInvalid {
     width: 100%;
     height: 3em;
     cursor: text;
