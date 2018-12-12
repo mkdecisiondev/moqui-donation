@@ -83,28 +83,28 @@ class GNDServiceTests extends Specification {
     def "process#MonthlyDonation will create donations for ALL users who've set up a monthly donation plan" (){
         when:
 
-        ec.service.sync().name("DonationPage.DonationPageServices.check#DonorEmailAndFrequency").parameters([emailAddress: "test@test.com", donationAmount: "100", donationFrequency: "monthly-donation", firstName: "test_firstName", lastName: "test_lastName", contactNumber: "1231231234", address1: "Te St.", city: "Test", stateProvinceGeoId: "USA_CA", postalCode: "92122", stripeToken: "tok_visa"]).call()
+        ec.service.sync().name("DonationPage.DonationPageServices.check#DonorEmailAndFrequency").parameters([emailAddress: "test2@test.com", donationAmount: "100", donationFrequency: "monthly-donation", firstName: "test2_firstName", lastName: "test2_lastName", contactNumber: "1231231234", address1: "Te St.", city: "Test2", stateProvinceGeoId: "USA_CA", postalCode: "92122", stripeToken: "tok_visa"]).call()
 
-        ec.service.sync().name("DonationPage.DonationPageServices.check#DonorEmailAndFrequency").parameters([emailAddress: "test2@test.com", donationAmount: "200", donationFrequency: "monthly-donation", firstName: "test2_firstName", lastName: "test2_lastName", contactNumber: "1231231234", address1: "2 Te St.", city: "Test2", stateProvinceGeoId: "USA_CA", postalCode: "92122", stripeToken: "tok_visa"]).call()
+        ec.service.sync().name("DonationPage.DonationPageServices.check#DonorEmailAndFrequency").parameters([emailAddress: "test3@test.com", donationAmount: "200", donationFrequency: "monthly-donation", firstName: "test3_firstName", lastName: "test3_lastName", contactNumber: "1231231234", address1: "2 Te St.", city: "Test3", stateProvinceGeoId: "USA_CA", postalCode: "92122", stripeToken: "tok_visa"]).call()
 
         ec.service.sync().name("DonationPage.DonationPageServices.process#MonthlyDonation").call()
-
-        EntityValue testContactMech = ec.entity.find("mantle.party.contact.ContactMech").condition( [ "infoString" : "test@test.com" ] ).one()
-        EntityValue testPartyContactMech = ec.entity.find("mantle.party.contact.PartyContactMech").condition( [ "contactMechId" : testContactMech.contactMechId ] ).one()
-        EntityValue testOrderPart = ec.entity.find("mantle.order.OrderPart").condition( [ "customerPartyId" : testPartyContactMech.partyId, "statusId" : "OrderCompleted"] ).one()
-        EntityValue testOrderItem = ec.entity.find("mantle.order.OrderItem").condition( [ "orderId" : testOrderPart.orderId ] ).one()
 
         EntityValue test2ContactMech = ec.entity.find("mantle.party.contact.ContactMech").condition( [ "infoString" : "test2@test.com" ] ).one()
         EntityValue test2PartyContactMech = ec.entity.find("mantle.party.contact.PartyContactMech").condition( [ "contactMechId" : test2ContactMech.contactMechId ] ).one()
         EntityValue test2OrderPart = ec.entity.find("mantle.order.OrderPart").condition( [ "customerPartyId" : test2PartyContactMech.partyId, "statusId" : "OrderCompleted"] ).one()
         EntityValue test2OrderItem = ec.entity.find("mantle.order.OrderItem").condition( [ "orderId" : test2OrderPart.orderId ] ).one()
 
+        EntityValue test3ContactMech = ec.entity.find("mantle.party.contact.ContactMech").condition( [ "infoString" : "test3@test.com" ] ).one()
+        EntityValue test3PartyContactMech = ec.entity.find("mantle.party.contact.PartyContactMech").condition( [ "contactMechId" : test3ContactMech.contactMechId ] ).one()
+        EntityValue test3OrderPart = ec.entity.find("mantle.order.OrderPart").condition( [ "customerPartyId" : test3PartyContactMech.partyId, "statusId" : "OrderCompleted"] ).one()
+        EntityValue test3OrderItem = ec.entity.find("mantle.order.OrderItem").condition( [ "orderId" : test3OrderPart.orderId ] ).one()
+
         then: 
-        testOrderPart.statusId=="OrderCompleted"
-        testOrderPart.partTotal.toString() == "100"
-        testOrderItem.itemTypeEnumId == "ItemDonation"
-        test2OrderPart.partTotal.toString() == "200"
+        test2OrderPart.statusId=="OrderCompleted"
+        test2OrderPart.partTotal.toString() == "100"
         test2OrderItem.itemTypeEnumId == "ItemDonation"
+        test3OrderPart.partTotal.toString() == "200"
+        test3OrderItem.itemTypeEnumId == "ItemDonation"
     }
 
     def "Creates a Stripe Customer when donation is submitted" (){
