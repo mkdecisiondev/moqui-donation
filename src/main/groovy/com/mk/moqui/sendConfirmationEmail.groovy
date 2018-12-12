@@ -39,6 +39,7 @@ public class sendConfirmationEmail {
 
   public static Map<String, Object> sendEmail (ExecutionContext ec){
     
+
     String HTMLBODY = """<body style="width:500px; text-align:center;">
 
     <img src="gnd-logo.svg" alt="Guru Nanak Dwara logo" style="width:50px; margin-top:13px">
@@ -75,6 +76,7 @@ public class sendConfirmationEmail {
     </div>
 
 </body>""";
+
 
     try {
       AmazonSimpleEmailService client = 
