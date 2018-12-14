@@ -56,6 +56,7 @@ class GNDStripeCustomer {
     receiptInfoMap.put("stripeCardBrand", charge.source.brand);
     receiptInfoMap.put("stripeTimeStamp", formattedDate);
     receiptInfoMap.put("stripeReceipt", charge.receiptNumber);
+    receiptInfoMap.put("stripePaid", charge.paid);
     // receiptInfoMap.put("stripeDonationAmount", );
 
     println("############# CHARGE INFO:##########");

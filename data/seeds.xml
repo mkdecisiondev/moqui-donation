@@ -41,4 +41,20 @@
     <moqui.service.job.ServiceJob jobName="process_monthly_donation" description="GND Monthly Donation Processing"  serviceName="DonationPage.DonationPageServices.process#MonthlyDonation" cronExpression="0 0/5 * * * ?" paused="N">
     </moqui.service.job.ServiceJob>
 
+    <moqui.entity.document.DataDocument dataDocumentId="GNDDonationsReport" indexName="GNDDonationsReport" documentName="GNDDonationsReport" primaryEntityName="mantle.account.invoice.Invoice" documentTitle="${name}"/>
+    <moqui.entity.document.DataDocumentField dataDocumentId="GNDDonationsReport" fieldPath="toParty:partyId" fieldNameAlias="PartyId"/>
+    <moqui.entity.document.DataDocumentField dataDocumentId="GNDDonationsReport" fieldPath="toParty:person:firstName" fieldNameAlias="FirstName"/>
+    <moqui.entity.document.DataDocumentField dataDocumentId="GNDDonationsReport" fieldPath="toParty:person:lastName" fieldNameAlias="LastName"/>
+    <moqui.entity.document.DataDocumentField dataDocumentId="GNDDonationsReport" fieldPath="invoiceTotal" fieldNameAlias="DonationAmount" functionName="sum"/>
+    <moqui.entity.document.DataDocumentField dataDocumentId="GNDDonationsReport" fieldPath="invoiceId" fieldNameAlias="NumberOfDonations" functionName="count"/>
+    <moqui.entity.document.DataDocumentField dataDocumentId="GNDDonationsReport" fieldPath="toParty:roles:roleTypeId" defaultDisplay="N"/>
+    <moqui.entity.document.DataDocumentField dataDocumentId="GNDDonationsReport" fieldPath="invoiceDate" fieldNameAlias="LastDonation" functionName="max"/>
+    <moqui.entity.document.DataDocumentField dataDocumentId="GNDDonationsReport" fieldPath="toParty:contactMechs:telecomNumber:contactNumber" fieldNameAlias="PhoneNumber"/>
+    <moqui.entity.document.DataDocumentField dataDocumentId="GNDDonationsReport" fieldPath="toParty:contactMechs:contactMech:infoString" fieldNameAlias="EmailAddress"/>
+    <moqui.entity.document.DataDocumentField dataDocumentId="GNDDonationsReport" fieldPath="toParty:contactMechs:contactMechPurposeId"/>
+    <moqui.entity.document.DataDocumentField dataDocumentId="GNDDonationsReport" fieldPath="description" defaultDisplay="N"/>
+    <moqui.entity.document.DataDocumentCondition dataDocumentId="GNDDonationsReport" fieldNameAlias="description" fieldValue="Donation"/>
+    <moqui.entity.document.DataDocumentCondition dataDocumentId="GNDDonationsReport" fieldNameAlias="roleTypeId" fieldValue="Customer"/>
+    <moqui.entity.document.DataDocumentCondition dataDocumentId="GNDDonationsReport" fieldNameAlias="contactMechPurposeId" operator="not-equals" fieldValue="PostalPrimary"/>
+
 </entity-facade-xml>
