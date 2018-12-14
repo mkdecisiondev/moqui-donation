@@ -1,6 +1,3 @@
-/* TODOS:
-*Change all font PX to EM */
-
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC:900|Raleway');
 
 /* Media queries at the bottom */
@@ -38,13 +35,6 @@ button:hover{
     background-color: #7BD0FF;
 }
 
-legend{
-    font-family: 'Raleway', sans-serif;
-    font-size: 1.75em;
-    margin-bottom: 4vh;
-    text-align: center;
-}
-
 label {
     font-family: 'Raleway', sans-serif;
     font-size: 1em;
@@ -73,7 +63,7 @@ sup{
 }
 
 .headerSecure{
-    background-image: url("lock.svg");
+    background-image: url("../Resources/lock.svg");
     background-position: left center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -87,13 +77,12 @@ sup{
 
 
 /* SPLASH SECTION */
+
 .splashBanner{
-    background-image: url("donationSplash.png");
+    background-image: url("../Resources/donationSplash.png");
     background-size: cover;
     height: 37vh;
     background-repeat: no-repeat;
-    /* background-position-y: -50px; */
-    /* background-attachment: fixed; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -107,12 +96,11 @@ sup{
     background: none;
     color: white;
     padding-top: 7.5%;
-    /* padding-left: 33%; */
     margin-top: 0;
 }
 
 
-/* SUBHEADER & DONATION BUTTONS SECTION */
+/* SUBHEADER SECTION */
 
 .subheaderAndAmountsSection{
     display: flex;
@@ -135,24 +123,37 @@ sup{
     margin-bottom: 5vh;
 }
 
-.hyperLink{
-    margin-bottom: 1vh;
-    font-family: 'Raleway', sans-serif;
-    font-size: 16px;
-    text-decoration: none;
-    color: #459ABC;
+/* DONATION BUTTONS SECTION */
+
+.allbuttonsContainer{
+    margin: 0 auto; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.hyperLink:hover{
-    color: #ED9757;
-    text-decoration: underline
+.donationAmountsSection{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 6vh;
+    flex-direction: column;
+    align-items: center;
 }
 
 #payment-form{
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.wrapperRadioLabel{
+    text-align: center;
+    width: 110px;
+}
+
+.wrapperFrequencyRadioLabel{
+    text-align: right;
+    width: 240px;
 }
 
 .donationButtonsContainer{
@@ -161,10 +162,13 @@ sup{
     flex-wrap: wrap;
     width: 60%;
     justify-content: space-evenly;
+    margin-bottom: 4vh;
 }
 
 .donationButtonsContainer input[type="radio"] {
-    display: none;
+    opacity: 0;
+    margin-right:-15%;
+    z-index: -100;
 }
 
 .donationButtonsContainer input[type="number"] {
@@ -198,6 +202,8 @@ sup{
     width: 65px;
     height: 25px;
     text-align: center;
+
+    z-index: 100;
 }
 
 .donationButtonsContainer input[type="radio"]:checked + label { 
@@ -218,12 +224,17 @@ sup{
     cursor: text; 
 }
 
+.otherAmountField {
+    margin-top: -33%;
+}
+
 .otherDonationContainer{
-    position: relative;
+    text-align: center;
+    width: 110px;
 }
 
 .otherDonationContainer input[type="radio"]{
-    display: none;
+    opacity: 0;
 }
 
 .otherDonationContainer label{
@@ -253,8 +264,8 @@ sup{
     text-align: left;
     background: none;
     font-family: 'Noto Sans SC', sans-serif;
-    margin-left: -5em;
     width: 60px;
+    margin-left: 18%;
 }
 
 .donationFrequencyButtonsContainer{
@@ -266,22 +277,28 @@ sup{
 }
 
 .donationFrequencyButtonsContainer input[type="radio"] {
-    display: none;
+    opacity: 0;
+    margin-right: -9%;
+    z-index: -100;
 }
 
 .donationFrequencyButtonsContainer label {
+    display: inline-block;
+
+    background-color: #459ABC;
+    padding: 10px 20px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    border-radius: 5px;
+    color: white;
     margin-top: 2vh;
     margin-bottom: 0;
     cursor: pointer;
-    text-align: center;
-    color: white;
     width: 200px;
-    background-color: #459ABC;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-family: 'Raleway', sans-serif;
-    font-size: 16px;
     outline: none;
+    text-align: center;
+
+    z-index: 100;
 }
 
 .donationFrequencyButtonsContainer label:hover {
@@ -294,15 +311,28 @@ sup{
 }
 
 
-/* BILLING AND CARD INFO FORMS */
+/* EMAIL & SUBMIT BUTTON SECTION */
 
-.billingAndCardSection{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    /* align-items: center; */
-    padding: 0 8vw 8vh 8vw;
-    margin-top: 8vh;
+.hyperLink{
+    margin-bottom: 1vh;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    color: #459ABC;
+    margin-bottom: 1vh;
+}
+
+.hyperLink:hover{
+    color: #ED9757;
+    text-decoration: underline
+}
+
+.labelAndFieldFull{
+    margin-top: 0;
+    width: 100%;
+    margin-left: 2.5%;
+    margin-right: 5%;
+    margin-bottom: 2.5%;
 }
 
 .inputField{
@@ -312,6 +342,7 @@ sup{
     border-radius: 5px;
     background-color: #f7f7f7;
     border: 1px solid #999;
+
     box-sizing: content-box;
 }
 
@@ -321,14 +352,13 @@ sup{
     cursor: text;
     border-radius: 5px;
     box-sizing: content-box;
-
-    border: 1px solid #999;
-    background-color: rgba(76, 175, 80, .10);
-    border-bottom: solid #4caf50 5px;
-    background-image: url("check.svg");
+    background-image: url("../Resources/check.svg");
     background-repeat: no-repeat;
     background-position-y: center;
-    background-position-x: 98%;
+    background-position-x: calc(100% - 10px);
+    box-shadow: 0 0 5px rgba(76, 175, 80, 1);
+    border: 1px solid rgba(76, 175, 80, 1);
+    background-color: rgba(76, 175, 80, .05);
 }
 
 .inputFieldInvalid {
@@ -337,83 +367,33 @@ sup{
     cursor: text;
     border-radius: 5px;
     box-sizing: content-box;
-
-    border: 1px solid #999;
-    background-color: rgba(255, 61, 0, .10);
-    border-bottom: solid #ff3d00 5px;
-    background-image: url("x.svg");
+    background-image: url("../Resources/x.svg");
     background-repeat: no-repeat;
     background-position-y: center;
-    background-position-x: 98%;
+    background-position-x: calc(100% - 10px);
+    box-shadow: 0 0 5px rgba(255, 61, 0, 1);
+    border: 1px solid rgba(255, 61, 0, 1);
+    background-color: rgba(255, 61, 0, .05);
 }
 
-
-input[type="text"], input[type="email"], input[type="tel"], input[type="number"] {
+input[type="email"], input[type="tel"] {
     font-size: 1em;
     font-family: 'Raleway', sans-serif;
     padding-left: 5px;
 }
 
-select{
-    font-family: 'Raleway', sans-serif;
-    font-size: 1em; 
+.billingAndCardSection{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 0 8vw 8vh 8vw;
+    margin-top: 2vh;
 }
 
 .billingContainer{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-}
-
-.labelAndFieldHalf{
-    width: 45%;
-    margin-left: 2.5%;
-    margin-bottom: 2.5%
-}
-
-.labelAndFieldFull{
-    width: 100%;
-    margin-left: 2.5%;
-    margin-right: 5%;
-    margin-bottom: 2.5%
-}
-
-.labelAndFieldThird{
-    margin-left: 2.5%
-}
-
-#cityField{
-    width: 57.5%;
-    margin-bottom: 2.5%
-}
-
-#stateField{
-    width: 15%;
-    margin-bottom: 2.5%
-}
-
-#zipField{
-    width: 15%;
-    margin-bottom: 2.5%
-}
-
-
-/* STRIPE & DONATE BUTTON */
-
-.stripeContainer{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    text-align: center;
-}
-
-.stripeForm{
-    border-radius: 5px;
-    background-color: #f7f7f7;
-    border: 1px solid #999;
-    padding: 10px 5px 5px 5px;
-    margin: 0 20% 4vh 20%;
-    height: 1.5em;
 }
 
 #donateButton{
@@ -431,11 +411,11 @@ select{
     height: 32px;
 }
 
-/* Media Queries */
+
+/* MEDIA QUERIES */
 @media only screen and (max-width: 67.5em){
     .splashBanner{ 
-        background-image: url("donationSplashSmall.png");
-        /* border: 2px solid red; */
+        background-image: url("../Resources/donationSplashSmall.png");
     }
     
     #splashTitle{
@@ -445,9 +425,8 @@ select{
 
 @media only screen and (max-width: 47.5em){
     .splashBanner{
-        background-image: url("donationSplashSmall.png");
+        background-image: url("../Resources/donationSplashSmall.png");
         padding-left: 0px;
-        /* border: 2px solid yellow; */
     }
     
     #splashTitle{
@@ -459,37 +438,13 @@ select{
     }
 
     .labelAndFieldFull{
-       margin: 0 0 2.5%
-    }
-
-    .labelAndFieldHalf{
-        width: 100%;
         margin: 0 0 2.5%
-    }
-
-    .labelAndFieldThird{
-        width: 100%;
-        margin: 0 0 2.5%
-    }
-
-    #cityField{
-       width: 100%; 
-    }
-
-    #stateField{
-        width: 100%;
-        margin: 0 0 2.5%
-    }
-
-    #zipField{
-        width: 100%;
-    }
-
-    .stripeForm{
-        margin: 0 0 2.5%;
-        width: 100%;
     }
 }
+
+
+
+
 
 
 

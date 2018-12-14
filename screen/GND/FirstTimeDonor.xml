@@ -4,24 +4,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd" standalone="true">
     <transition name="HandleFirstTimeDonationForm" require-session-token="false">
         <service-call name="DonationPage.DonationPageServices.check#DonorEmailAndFrequency"/>
-        <default-response url="../ThankYouPage"/>
+        <default-response url="../ThankYou"/>
     </transition>
 
-
     <widgets>
-        <!-- <link text="Returning donor? Click here!" url="../ReturningDonor"/> -->
         <render-mode>
-            <text type="html,vuet" location="component://GND/screen/GND/gnd-html-draft.html"/>
+            <text type="html,vuet" location="component://GND/screen/GND/Pages/FirstTimeDonor.html"/>
         </render-mode>
     </widgets>
 </screen>
-
-    <!-- <transition name="HandleFirstTimeDonation" require-session-token="false">
-        <service-call name="DonationPage.DonationPageServices.handle#FirstTimeDonation"/>
-        <default-response url="../ThankYouPage"/>
-    </transition>
-
-    <transition name="HandleReturningDonation" require-session-token="false">
-        <service-call name="DonationPage.DonationPageServices.handle#Donation"/>
-        <default-response url="../ThankYouPage"/>
-    </transition> -->

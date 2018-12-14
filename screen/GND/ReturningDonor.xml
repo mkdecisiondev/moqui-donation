@@ -4,12 +4,12 @@
 
   <transition name="HandleDonationForm" require-session-token="false">
     <service-call name="DonationPage.DonationPageServices.check#DonorEmailAndFrequency"/>
-    <default-response url="../ThankYouPage"/>
+    <default-response url="../ThankYou"/>
   </transition>
 
   <widgets>
     <render-mode>
-            <text type="html,vuet" location="component://GND/screen/GND/gnd-returning-donor.html"/>
+            <text type="html,vuet" location="component://GND/screen/GND/Pages/ReturningDonor.html"/>
         </render-mode>
   </widgets>
 </screen>

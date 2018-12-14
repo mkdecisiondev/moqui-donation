@@ -34,8 +34,7 @@ class GNDStripeCustomer {
     
     Map<String, Object> customerParams = new HashMap<>();
 
-
-    String amount = ec.context.donationAmount.toString()
+    String amount = ec.context.donationAmount
     // println("@!@!@!@!@@!@!@!DONATION AMOUNT STRING IS ${amount}")
 
     Double result = Double.parseDouble(amount)*100
@@ -51,7 +50,6 @@ class GNDStripeCustomer {
 
     Map<String, Object> receiptInfoMap = new HashMap<String, Object> ()
 
-    //BUG: need to turn String into object since MAP only takes in String, Object combination
     String formattedDate = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new java.util.Date (charge.created*1000));
 
     receiptInfoMap.put("stripeLast4", charge.source.last4);
