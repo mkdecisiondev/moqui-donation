@@ -7,7 +7,7 @@
     </transition>
     <widgets>
         <render-mode>
-            <text type="html,vuet" location="component://GND/screen/GND/gnd-thankyou.html"/>
+            <text type="html,vuet" location="component://GND/screen/GND/Pages/ThankYou.html"/>
         </render-mode>
     </widgets>
 </screen>

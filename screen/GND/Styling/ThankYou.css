@@ -35,9 +35,6 @@ p {
 }
 
 a{
-    /* font-family: 'Raleway', sans-serif;
-    font-size: 1em;
-    color: #459ABC; */
     text-decoration: none;
 }
 
@@ -70,7 +67,7 @@ header{
 }
 
 .headerSecure{
-    background-image: url("lock.svg");
+    background-image: url("../Resources/lock.svg");
     background-position: left center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -82,13 +79,16 @@ header{
     padding: 0 0 0 20px;
 }
 
+
 /* LINKS */
+
 .linksContainer{
     font-family: 'Raleway', sans-serif;
     font-size: 1em;
     color: #459ABC;
     text-align: center;
 }
+
 
 /* FOOTER */
 
@@ -105,9 +105,10 @@ footer{
 
 /* MEDIA QUERIES */
 
+/* Used aspect ratio since Ipads and some tablets did not display the footer at the bottom of page, query fixed this */
 @media (max-aspect-ratio: 4/3){
 
-    /* Added HTML and Body Styling to make footer sticky at the bottom with proper margins */
+    /*HTML and BODY styling below needed to make footer sticky at the bottom with proper margins */
 
     html{
         height:100%
@@ -122,7 +123,6 @@ footer{
 
     h1{
         font-size: 2.5em;
-        /* color: blue; */
     }
 
     h3{
@@ -149,7 +149,6 @@ footer{
 @media only screen and (max-width: 47.5em){
     h1{
         font-size: 2.5em;
-        /* color: blue; */
     }
 
     h3{
@@ -163,7 +162,6 @@ footer{
     .linksContainer{
         font-size: .75em;
     }
-
 }
 
 
