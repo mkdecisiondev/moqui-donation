@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Description" content="Guru Nanak Dwara returning donor donation page">
+    <meta name="theme-color" content="#ED9757"/>
+    <title>GND Returning Donor</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="Styling/ReturningDonor.css?version=41" />
+    <link rel="icon" type="image/png" sizes="32x32" href="Resources/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Resources/favicons/favicon-16x16.png">
+    <script src="Javascript/donationJS.js?version=4"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="headerContainer">
+            <a href="https://www.gurunanakdwara.com/">
+                <img src="Resources/gnd-logo.svg" alt="Guru Nanak Dwara logo" class="headerLogo">
+            </a>
+            <div>
+                <span class="headerSecure"> Secure response </span>
+            </div>
+        </div>
+    </header>
+
+
+    <main>
+        <section>
+            <div class="splashBanner">
+                <h1 id=splashTitle> You make us possible. </h1>
+            </div>
+        </section>
+
+        <article>
+            <section class="subheaderAndAmountsSection">
+                <p class="subheader" id="donateNow">Donate again</p>
+                <a href="./FirstTimeDonor" class="hyperLink"> First-time donor? </a>
+            </section>
+
+            <form action="/apps/GND/ReturningDonor/HandleDonationForm" method="post" id="payment-form">
+                <div class="allbuttonsContainer">
+                    <section class="donationFrequencyButtonsContainer">
+                        <div class="wrapperFrequencyRadioLabel"> 
+                            <input required type="radio" id="frequency1" name="donationFrequency" value="monthly-donation">
+                            <label for="frequency1"> Monthly donations</label>
+                        </div>
+
+                        <div class="wrapperFrequencyRadioLabel">
+                            <input required type="radio" id="frequency2" name="donationFrequency" value="one-time-donation">
+                            <label for="frequency2"> One-time donations </label>
+                        </div>
+                    </section>
+
+                    <section class="donationButtonsContainer">
+                        <div class="wrapperRadioLabel">
+                            <input type="radio" id="amountBox1" name="DonationAmount" value="31">
+                            <label for="amountBox1"> $31 </label>
+                        </div>
+
+                        <div class="wrapperRadioLabel">
+                            <input type="radio" id="amountBox2" name="DonationAmount" value="51">
+                            <label for="amountBox2"> $51 </label>
+                        </div>
+
+                        <div class="wrapperRadioLabel">
+                            <input type="radio" id="amountBox3" name="DonationAmount" value="101">
+                            <label for="amountBox3"> $101 </label>
+                        </div>
+
+                        <div class="wrapperRadioLabel">
+                            <input type="radio" id="amountBox4" name="DonationAmount" value="251">
+                            <label for="amountBox4"> $251 </label>
+                        </div>
+
+                        <div class="wrapperRadioLabel">
+                            <input type="radio" id="amountBox5" name="DonationAmount" value="501">
+                            <label for="amountBox5"> $501 </label>
+                        </div>
+
+                        <div class="wrapperRadioLabel">
+                            <input type="radio" id="amountBox6" name="DonationAmount" value="1001">
+                            <label for="amountBox6"> $1,001 </label>
+                        </div>
+
+                        <div class="wrapperRadioLabel">
+                            <input type="radio" id="amountBox7" name="DonationAmount" value="2001">
+                            <label for="amountBox7"> $2,001 </label>
+                        </div>
+
+                        <div class="wrapperRadioLabel">
+                            <input type="radio" id="amountBox8" name="DonationAmount" value="5001">
+                            <label for="amountBox8"> $5,001 </label>
+                        </div>
+
+                        <div class="otherDonationContainer">
+                            <input type="radio" id="otherAmountRadio"
+                            name="DonationAmount" value="">
+                            <label for="otherAmountRadio"> $ </label>
+
+                            <div class="otherAmountField">
+                                <input type="tel" id="otherAmtNumberInput" name="amount"  placeholder="Other" maxlength="7" pattern="\d+(\.\d{2})?" onclick="checkOtherRadio()" onchange="setOtherAmount()" title="Please enter numbers as whole dollars or dollars and cents (2 decimals)"> 
+                            </div>
+                        </div>
+                    </section> 
+                </div>
+
+                <div class="billingAndCardSection">
+                    <section class="billingContainer">
+                        <div class="labelAndFieldFull">
+                            <label for="emailAddress">Email Address<sup>*</sup></label>
+                            <br/>
+                            <input required type="email" id="emailAddress" name="emailAddress" class="inputField" title="Please enter a valid Email Address" onblur="addValidationErrorStyling(event)" oninput="addValidationErrorStyling(event)">
+                        </div>
+                    </section>
+    
+                    <div class="badgeContainer">
+                        <img src="Resources/powered_by_stripe.png" alt="powered by Stripe badge" class="stripeBadge">
+                        <img src="Resources/100-secure.png" alt="100% secure badge" class="secure100Badge">
+                    </div>
+        
+                    <br/>
+    
+                    <div id="donateButton">
+                        <button class="button">Submit donation</button>
+                    </div>
+                </div>
+            </form>
+        </article>
+    </main>
+
+    <footer>
+        <p>Guru Nanak Dwara is a tax-exempt 501c(3) non-profit charitable organization. Every generous donation is tax deductible in the USA.</p>
+    </footer>
+
+    </body>
+    
+</html>

@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <screen require-authentication="anonymous-all" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd" standalone="true">
     <transition name="HandleFirstTimeDonationForm" require-session-token="false">
-        <service-call name="DonationPage.DonationPageServices.check#DonorEmail"/>
-        <default-response url="../ThankYouPage"/>
+        <service-call name="DonationPage.DonationPageServices.check#DonorEmailAndFrequency"/>
+        <default-response url="../ThankYou"/>
     </transition>
 
-
     <widgets>
-        <link text="Returning donor? Click here!" url="../ReturningDonor"/>
         <render-mode>
-            <text type="html,vuet" location="component://GND/screen/GND/stripeElement.html"/>
+            <text type="html,vuet" location="component://GND/screen/GND/Pages/FirstTimeDonor.html"/>
         </render-mode>
     </widgets>
 </screen>
- 
-    <!-- <transition name="HandleFirstTimeDonation" require-session-token="false">
-        <service-call name="DonationPage.DonationPageServices.handle#FirstTimeDonation"/>
-        <default-response url="../ThankYouPage"/>
-    </transition>
-
-    <transition name="HandleReturningDonation" require-session-token="false">
-        <service-call name="DonationPage.DonationPageServices.handle#Donation"/>
-        <default-response url="../ThankYouPage"/>
-    </transition> -->

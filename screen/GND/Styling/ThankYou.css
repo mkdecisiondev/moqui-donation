@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+SC:900|Raleway');
+
+.splashPhoto{
+    width: 100%;
+}
+
+h1{
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 4em;
+    background: none;
+    color: #ED9757;
+    margin-bottom: 0;
+    margin-top: 4vh;
+}
+
+h3 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.75em;
+    margin-bottom: 0;
+    margin-top: 4vh;
+}
+
+p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
+    color: black
+}
+
+.thankYouSection{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-align: center;
+    margin-bottom: 8vh;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    color: #ED9757;
+    text-decoration: underline
+}
+
+
+/* HEADER */
+
+header{
+    position: static;
+    width: 100%;
+    z-index: 100;
+    height: 50px;
+}
+
+.headerContainer{
+    align-items: center; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.headerLogo{
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.headerSecure{
+    background-image: url("../Resources/lock.svg");
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: #98a0b6;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    height: 60px;
+    margin-right: 0.5em;
+    padding: 0 0 0 20px;
+}
+
+
+/* LINKS */
+
+.linksContainer{
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
+    color: #459ABC;
+    text-align: center;
+}
+
+
+/* FOOTER */
+
+footer{
+    background-color: #959595;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    text-align: center;
+}
+
+
+/* MEDIA QUERIES */
+
+/* Used aspect ratio since Ipads and some tablets did not display the footer at the bottom of page, query fixed this */
+@media (max-aspect-ratio: 4/3){
+
+    /*HTML and BODY styling below needed to make footer sticky at the bottom with proper margins */
+
+    html{
+        height:100%
+    }
+
+    body {
+        min-height: 100%;
+        padding: 0;
+        margin: 8px;
+        position: relative;
+    }
+
+    h1{
+        font-size: 2.5em;
+    }
+
+    h3{
+        font-size: 1.25em;
+    }
+
+    p{
+        font-size: 0.75em;
+    }
+
+    .linksContainer{
+        font-size: .75em;
+    }
+
+    footer{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+   
+        margin-bottom: 16px;
+    }
+}
+
+@media only screen and (max-width: 47.5em){
+    h1{
+        font-size: 2.5em;
+    }
+
+    h3{
+        font-size: 1.25em;
+    }
+
+    p{
+        font-size: 0.75em;
+    }
+
+    .linksContainer{
+        font-size: .75em;
+    }
+}
+
+
+
+

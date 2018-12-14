@@ -25,12 +25,20 @@
         <artifacts artifactName="DonationPage.DonationPageServices.post#DonationData" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="N"/>
         <artifacts artifactName="DonationPage.DonationPageServices.handle#Donation" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
         <artifacts artifactName="DonationPage.DonationPageServices.handle#Donation" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="N"/>
-        <artifacts artifactName="DonationPage.DonationPageServices.handle#FirstTimeDonation" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
-        <artifacts artifactName="DonationPage.DonationPageServices.handle#FirstTimeDonation" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.check#DonorEmailAndFrequency" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.check#DonorEmailAndFrequency" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.create#OrderForMonthlyDonationPlan" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.create#OrderForMonthlyDonationPlan" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.process#MonthlyDonation" artifactTypeEnumId="AT_SERVICE" inheritAuthz="Y" nameIsPattern="N"/>
+        <artifacts artifactName="DonationPage.DonationPageServices.process#MonthlyDonation" artifactTypeEnumId="AT_XML_SCREEN_TRANS" inheritAuthz="Y" nameIsPattern="N"/>
 
     </artifactGroups>
     <mantle.party.Party partyId="GND" partyTypeEnumId="PtyOrganization"/>
     <mantle.party.Organization partyId="GND" organizationName="Guru Nanak Dwara"/>
     <mantle.party.PartyRole partyId="GND" roleTypeId="OrgInternal"/>
     <mantle.party.PartyRole partyId="GND" roleTypeId="Vendor"/>
+    <moqui.basic.Enumeration enumId="ItemDonationMonthly" enumTypeId="ItemType" parentEnumId="ItemSales" description="Monthly Donation"/>
+    <moqui.service.job.ServiceJob jobName="process_monthly_donation" description="GND Monthly Donation Processing"  serviceName="DonationPage.DonationPageServices.process#MonthlyDonation" cronExpression="0 0/5 * * * ?" paused="N">
+    </moqui.service.job.ServiceJob>
+
 </entity-facade-xml>

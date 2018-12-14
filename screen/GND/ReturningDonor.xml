@@ -2,40 +2,14 @@
 <screen require-authentication="false" standalone="true" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-2.1.xsd">
 
-  <transition name="HandleDonation" require-session-token="false">
-    <service-call name="DonationPage.DonationPageServices.handle#Donation"/>
-    <default-response url="../ThankYouPage"/>
+  <transition name="HandleDonationForm" require-session-token="false">
+    <service-call name="DonationPage.DonationPageServices.check#DonorEmailAndFrequency"/>
+    <default-response url="../ThankYou"/>
   </transition>
 
   <widgets>
-    <link text="First time donor? Click here!" url="../FirstTimeDonor"/>
     <render-mode>
-            <text type="html,vuet" location="component://GND/screen/GND/ReturningDonor.html"/>
+            <text type="html,vuet" location="component://GND/screen/GND/Pages/ReturningDonor.html"/>
         </render-mode>
   </widgets>
 </screen>
-    
-    
-    
-<!--     
-    
-    
-    <link text="First time donor? Click here!" url="../FirstTimeDonor"/>
-    <label type="h1" text="How much would you like to donate today?"/>
-    <form-single name="Donation" transition="Stripe">
-      <field name="emailAddress">
-        <default-field>
-          <text-line/>
-        </default-field>
-      </field>
-      <field name="DonationAmount">
-        <default-field>
-          <text-line/>
-        </default-field>
-      </field>
-      <field name="submitButton">
-        <default-field title="Submit">
-          <submit/>
-        </default-field>
-      </field>
-    </form-single> -->
